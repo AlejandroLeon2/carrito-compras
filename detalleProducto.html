@@ -6,7 +6,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="src/style.css">
 </head>
-<body class="bg-gray-100">
+<body class="bg-gray-100 md:text-base text-sm">
   <header class="grid grid-cols-12  shadow-xl pb-[2rem] md:py-[2rem]  ">
     <img src="../image/logo01.webp"  alt="logo tienda" class="md:col-span-3 md:  h-18  mx-auto col-span-12" >
     <nav class="md:col-span-9 md: md:w-full col-span-12 grid grid-cols-12 place-items-center">
@@ -25,27 +25,21 @@
         <a class="col-span-1 col-start-11 hover:scale-110" href="login.html"><img src="../image/user.svg" alt="Logo usuario"
                 class="md:h-8 md:w-8"></a>
     </nav>
-    <section class="flex items-center col-span-12 justify-center gap-8 mt-[1rem]">
-        <button class="font-semibold cursor-pointer hover:scale-105" type="button" onclick="">Accesorios</button>
-        <button class="font-semibold cursor-pointer hover:scale-105" type="button" onclick="">Pc</button>
-        <button class="font-semibold cursor-pointer hover:scale-105" type="button" onclick="">Impresoras</button>
-        <button class="font-semibold cursor-pointer hover:scale-110" type="button" onclick="">Laptop</button>
-    </section>
  </header>
 
-    <main class=" mx-auto  w-[22rem]">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 border w-[22rem]">
+    <main class="h-[30rem]  w-[19rem] md:w-[45rem] lg:w-2/3 my-8 mx-auto text-justify rounded">
+      <section class="grid grid-cols-1 md:grid-cols-2 gap-4 border md:w-full">
         <div class="flex flex-col items-center justify-center">
-          <div id="mainImage" class="relative w-[20rem] max-h-96">
-            <img src="https://pesonyb2c.vtexassets.com/arquivos/ids/222922-1600-auto?v=638409142731670000&width=1600&height=auto&aspect=true" alt="Imagen del producto" class="md:w-full w-[22rem] max-h-[20rem] object-cover rounded-lg">
+          <div id="mainImage" class="relative max-h-96">
+            <img src="https://pesonyb2c.vtexassets.com/arquivos/ids/222922-1600-auto?v=638409142731670000&width=1600&height=auto&aspect=true" alt="Imagen del producto" class="md:w-full w-[20rem] max-h-[20rem] object-cover rounded-lg">
           </div>
-          <div class="flex mt-4 space-x-2 flex-wrap"> 
+          <div class="flex mt-4 gap-1 flex-wrap justify-center  w-full"> 
             <img src="https://pesonyb2c.vtexassets.com/arquivos/ids/224784-1600-auto?v=638769496429000000&width=1600&height=auto&aspect=true" alt="Vista 1" class="w-24 h-24 object-cover rounded-lg cursor-pointer thumbnail">
             <img src="https://pesonyb2c.vtexassets.com/arquivos/ids/224791-1600-auto?v=638769496429470000&width=1600&height=auto&aspect=true" alt="Vista 2" class="w-24 h-24 object-cover rounded-lg cursor-pointer thumbnail">
             <img src="https://pesonyb2c.vtexassets.com/arquivos/ids/224786-1600-auto?v=638769496429130000&width=1600&height=auto&aspect=true" alt="Vista 3" class="w-24 h-24 object-cover rounded-lg cursor-pointer thumbnail">
           </div>
         </div>
-        <div class="flex flex-col">
+        <div class="flex flex-col w-[18rem] xl:w-[22rem] mx-auto mb-4">
             <h1 class="text-3xl font-bold mb-4 mx-2">Audífonos inalámbricos con micrófono INZONE H5 para juegos</h1>
             <p class="text-gray-700 mb-4 mx-2">Detección precisa de rivales gracias al Sonido espacial 360 para juegos, Juega durante horas con comodidad gracias a su diseño ligero de 260 g y una presión lateral mínima, Comunicaciones de equipo fluidas 
                 gracias al micrófono tipo boom bidireccional con tecnología de reducción de ruido con inteligencia artificial.</p>
@@ -56,7 +50,8 @@
             </div>
             <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-2 mx-[3rem] rounded">Agregar al Carrito</button>
           </div>
-        </div>
+        </section>
+        <p id="array"></p>
     </main>
 
   <footer class="lg:pt-4 lg:justify-items-center lg:grid-cols-6 md:grid-cols-4 grid grid-cols-2  bg-gray-300 pt-2 w-full">

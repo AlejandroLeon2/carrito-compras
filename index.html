@@ -5,11 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="src/style.css">
+    <script type="module" src="/js/main.js" defer></script>
     <title>Document</title>
 </head>
 
 
-<body class=" xl:text-xl md:text-[1rem] bg-[#F0E7D6] text-xs  text-center xl:leading-7 md:leading-5 leading-4 min-h-screen flex flex-col relative">
+<body class=" xl:text-xl text-justify md:text-[1rem] bg-[#F0E7D6] text-xs   xl:leading-7 md:leading-5 leading-4 min-h-screen flex flex-col relative">
     <header class="grid grid-cols-12  shadow-xl pb-[2rem] md:py-[2rem]  ">
         <img src="../image/logo01.webp"  alt="logo tienda" class="md:col-span-3 md:  h-18  mx-auto col-span-12" >
         <nav class="md:col-span-9 md: md:w-full col-span-12 grid grid-cols-12 place-items-center">
@@ -23,16 +24,16 @@
                     </span>
                 </form>
             </section>
-            <a class="col-span-1 col-start-10 hover:scale-110" href=""><img src="../image/carrito.svg" alt="Logo carrito"
+            <a class="col-span-1 col-start-10 hover:scale-110" href="carrito.html"><img src="../image/carrito.svg" alt="Logo carrito"
                     class="md:h-8 md:w-8"></a>
             <a class="col-span-1 col-start-11 hover:scale-110" href="login.html"><img src="../image/user.svg" alt="Logo usuario"
                     class="md:h-8 md:w-8"></a>
         </nav>
         <section class="flex items-center col-span-12 justify-center gap-8 mt-[1rem]">
-            <button class="font-semibold cursor-pointer hover:scale-105" type="button" onclick="">Accesorios</button>
-            <button class="font-semibold cursor-pointer hover:scale-105" type="button" onclick="">Pc</button>
-            <button class="font-semibold cursor-pointer hover:scale-105" type="button" onclick="">Impresoras</button>
-            <button class="font-semibold cursor-pointer hover:scale-110" type="button" onclick="">Laptop</button>
+            <a class="font-semibold cursor-pointer hover:scale-105" type="button" onclick="" href="categorias.html">Accesorios</a>
+            <a class="font-semibold cursor-pointer hover:scale-105" type="button" onclick="" href="detalleProducto.html">Pc</a>
+            <a class="font-semibold cursor-pointer hover:scale-105" type="button" onclick="">Impresoras</a>
+            <a class="font-semibold cursor-pointer hover:scale-110" type="button" onclick="">Laptop</a>
         </section>
 
     </header>
@@ -41,7 +42,37 @@
      <main class="flex flex-col flex-grow ">
         <!-- Sección de banner -->
         <section class="mx-auto">
-            <img src="../image/banner.jpg" alt="Banner Promocional" class=" rounded-lg shadow-md w-[30rem] h-full">
+            <div class="relative w-full  overflow-hidden rounded-lg shadow-lg">
+        
+                <!-- Slides -->
+                <div class="flex transition-transform duration-700 ease-in-out w-[17rem] md:w-[40rem] xl:w-[100rem] my-8 h-auto" id="slider">
+                    <div class="w-full flex-shrink-0"><img src="/image/slide1.jpg" class="w-full object-cover"></div>
+                    <div class="w-full flex-shrink-0"><img src="/image/slide2.jpg" class="w-full object-cover"></div>
+                    <div class="w-full flex-shrink-0"><img src="/image/slide3.jpg" class="w-full object-cover"></div>
+                </div>
+        
+                <!-- Botones de navegación -->
+                <button id="prev" class="absolute left-2 top-1/2 transform -translate-y-1/2 bg-gray-600 text-white p-3 rounded-full opacity-50 hover:opacity-90 transition cursor-pointer">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"></path>
+                    </svg>
+                </button>
+                <button id="next" class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-gray-600 text-white p-3 rounded-full opacity-50 hover:opacity-90 transition cursor-pointer">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                </button>
+        
+                <!-- Indicadores -->
+                <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+                    <span class="dot w-3 h-3 bg-white rounded-full cursor-pointer"></span>
+                    <span class="dot w-3 h-3 bg-gray-400 rounded-full cursor-pointer"></span>
+                    <span class="dot w-3 h-3 bg-gray-400 rounded-full cursor-pointer"></span>
+                </div>
+        
+                
+        
+            </div>
         </section>
 
         <!-- Sección de productos -->
@@ -50,30 +81,6 @@
             <section class="mb-8">
                 <h2 class="text-xl font-bold mb-4">Lo Mas Vendido</h2>
                 <section class="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 gap-2 justify-self-center">
-                    <div class=" xl:w-[15rem] xl:h-[22rem]  lg:w-[12rem] lg:h-[16rem] md:w-[12rem] md:h-[16rem] h-[12rem] w-[9rem] col-span-1 bg-[#091525] rounded-[0.5rem] hover:scale-105 transition duration-300 border text-white" id="Productos">
-                        <img class="h-1/2  overflow-hidden rounded-[0.5rem] cursor-pointer" src="../image/mon.png" alt="foto de producto">
-                        <p class=" xl:mt-2 lg:mx-2.5 md:my-1.9 md:mx-1 text-wrap  my-1 mx-0.5 " id="nombreProducto" >Nombre del producto asdafasg asfsffsa a</p>
-                        <p class="lg:mx-2.5 md:my-1.9 md:mx-1 text-wrap  my-1 mx-0.5 font-bold">Precio: S/<span id="Precio">1234</span> </p>
-                        <button type="button" class="hover:bg-[#a9adb6] bg-[#e7e7e9] rounded-[0.8rem]  md:p-0.5 md:mt-0.5 xl:mt-2 lg:mx-[3rem] xl:mx-[3.5rem] mx-8 md:leading-4 leading-3 border hover:scale-105 active:scale-95 cursor-pointer text-black " onclick="">Añadir carrito</button>
-                    </div>
-                    <div class=" xl:w-[15rem] xl:h-[22rem]  lg:w-[12rem] lg:h-[16rem] md:w-[12rem] md:h-[16rem] h-[12rem] w-[9rem] col-span-1 bg-[#091525] rounded-[0.5rem] hover:scale-105 transition duration-300 border text-white" id="Productos">
-                        <img class="h-1/2  overflow-hidden rounded-[0.5rem] cursor-pointer" src="../image/mon.png" alt="foto de producto">
-                        <p class=" xl:mt-2 lg:mx-2.5 md:my-1.9 md:mx-1 text-wrap  my-1 mx-0.5 " id="nombreProducto" >Nombre del producto asdafasg asfsffsa a</p>
-                        <p class="lg:mx-2.5 md:my-1.9 md:mx-1 text-wrap  my-1 mx-0.5 font-bold">Precio: S/<span id="Precio">1234</span> </p>
-                        <button type="button" class="hover:bg-[#a9adb6] bg-[#e7e7e9] rounded-[0.8rem]  md:p-0.5 md:mt-0.5 xl:mt-2 lg:mx-[3rem] xl:mx-[3.5rem] mx-8 md:leading-4 leading-3 border hover:scale-105 active:scale-95 cursor-pointer text-black " onclick="">Añadir carrito</button>
-                    </div>
-                    <div class=" xl:w-[15rem] xl:h-[22rem]  lg:w-[12rem] lg:h-[16rem] md:w-[12rem] md:h-[16rem] h-[12rem] w-[9rem] col-span-1 bg-[#091525] rounded-[0.5rem] hover:scale-105 transition duration-300 border text-white" id="Productos">
-                        <img class="h-1/2  overflow-hidden rounded-[0.5rem] cursor-pointer" src="../image/mon.png" alt="foto de producto">
-                        <p class=" xl:mt-2 lg:mx-2.5 md:my-1.9 md:mx-1 text-wrap  my-1 mx-0.5 " id="nombreProducto" >Nombre del producto asdafasg asfsffsa a</p>
-                        <p class="lg:mx-2.5 md:my-1.9 md:mx-1 text-wrap  my-1 mx-0.5 font-bold">Precio: S/<span id="Precio">1234</span> </p>
-                        <button type="button" class="hover:bg-[#a9adb6] bg-[#e7e7e9] rounded-[0.8rem]  md:p-0.5 md:mt-0.5 xl:mt-2 lg:mx-[3rem] xl:mx-[3.5rem] mx-8 md:leading-4 leading-3 border hover:scale-105 active:scale-95 cursor-pointer text-black " onclick="">Añadir carrito</button>
-                    </div>
-                    <div class=" xl:w-[15rem] xl:h-[22rem]  lg:w-[12rem] lg:h-[16rem] md:w-[12rem] md:h-[16rem] h-[12rem] w-[9rem] col-span-1 bg-[#091525] rounded-[0.5rem] hover:scale-105 transition duration-300 border text-white" id="Productos">
-                        <img class="h-1/2  overflow-hidden rounded-[0.5rem] cursor-pointer" src="../image/mon.png" alt="foto de producto">
-                        <p class=" xl:mt-2 lg:mx-2.5 md:my-1.9 md:mx-1 text-wrap  my-1 mx-0.5 " id="nombreProducto" >Nombre del producto asdafasg asfsffsa a</p>
-                        <p class="lg:mx-2.5 md:my-1.9 md:mx-1 text-wrap  my-1 mx-0.5 font-bold">Precio: S/<span id="Precio">1234</span> </p>
-                        <button type="button" class="hover:bg-[#a9adb6] bg-[#e7e7e9] rounded-[0.8rem]  md:p-0.5 md:mt-0.5 xl:mt-2 lg:mx-[3rem] xl:mx-[3.5rem] mx-8 md:leading-4 leading-3 border hover:scale-105 active:scale-95 cursor-pointer text-black " onclick="">Añadir carrito</button>
-                    </div>
                 </section>
             </section>
 
@@ -81,30 +88,8 @@
             <section class="mb-8">
                 <h2 class="text-xl font-bold mb-4">Nuevos lanzamientos</h2>
                 <section class="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 gap-2 justify-self-center">
-                    <div class=" xl:w-[15rem] xl:h-[22rem]  lg:w-[12rem] lg:h-[16rem] md:w-[12rem] md:h-[16rem] h-[12rem] w-[9rem] col-span-1 bg-[#091525] rounded-[0.5rem] hover:scale-105 transition duration-300 border text-white" id="Productos">
-                        <img class="h-1/2  overflow-hidden rounded-[0.5rem] cursor-pointer" src="../image/mon.png" alt="foto de producto">
-                        <p class=" xl:mt-2 lg:mx-2.5 md:my-1.9 md:mx-1 text-wrap  my-1 mx-0.5 " id="nombreProducto" >Nombre del producto asdafasg asfsffsa a</p>
-                        <p class="lg:mx-2.5 md:my-1.9 md:mx-1 text-wrap  my-1 mx-0.5 font-bold">Precio: S/<span id="Precio">1234</span> </p>
-                        <button type="button" class="hover:bg-[#a9adb6] bg-[#e7e7e9] rounded-[0.8rem]  md:p-0.5 md:mt-0.5 xl:mt-2 lg:mx-[3rem] xl:mx-[3.5rem] mx-8 md:leading-4 leading-3 border hover:scale-105 active:scale-95 cursor-pointer text-black " onclick="">Añadir carrito</button>
-                    </div>
-                    <div class=" xl:w-[15rem] xl:h-[22rem]  lg:w-[12rem] lg:h-[16rem] md:w-[12rem] md:h-[16rem] h-[12rem] w-[9rem] col-span-1 bg-[#091525] rounded-[0.5rem] hover:scale-105 transition duration-300 border text-white" id="Productos">
-                        <img class="h-1/2  overflow-hidden rounded-[0.5rem] cursor-pointer" src="../image/mon.png" alt="foto de producto">
-                        <p class=" xl:mt-2 lg:mx-2.5 md:my-1.9 md:mx-1 text-wrap  my-1 mx-0.5 " id="nombreProducto" >Nombre del producto asdafasg asfsffsa a</p>
-                        <p class="lg:mx-2.5 md:my-1.9 md:mx-1 text-wrap  my-1 mx-0.5 font-bold">Precio: S/<span id="Precio">1234</span> </p>
-                        <button type="button" class="hover:bg-[#a9adb6] bg-[#e7e7e9] rounded-[0.8rem]  md:p-0.5 md:mt-0.5 xl:mt-2 lg:mx-[3rem] xl:mx-[3.5rem] mx-8 md:leading-4 leading-3 border hover:scale-105 active:scale-95 cursor-pointer text-black " onclick="">Añadir carrito</button>
-                    </div>
-                    <div class=" xl:w-[15rem] xl:h-[22rem]  lg:w-[12rem] lg:h-[16rem] md:w-[12rem] md:h-[16rem] h-[12rem] w-[9rem] col-span-1 bg-[#091525] rounded-[0.5rem] hover:scale-105 transition duration-300 border text-white" id="Productos">
-                        <img class="h-1/2  overflow-hidden rounded-[0.5rem] cursor-pointer" src="../image/mon.png" alt="foto de producto">
-                        <p class=" xl:mt-2 lg:mx-2.5 md:my-1.9 md:mx-1 text-wrap  my-1 mx-0.5 " id="nombreProducto" >Nombre del producto asdafasg asfsffsa a</p>
-                        <p class="lg:mx-2.5 md:my-1.9 md:mx-1 text-wrap  my-1 mx-0.5 font-bold">Precio: S/<span id="Precio">1234</span> </p>
-                        <button type="button" class="hover:bg-[#a9adb6] bg-[#e7e7e9] rounded-[0.8rem]  md:p-0.5 md:mt-0.5 xl:mt-2 lg:mx-[3rem] xl:mx-[3.5rem] mx-8 md:leading-4 leading-3 border hover:scale-105 active:scale-95 cursor-pointer text-black " onclick="">Añadir carrito</button>
-                    </div>
-                    <div class=" xl:w-[15rem] xl:h-[22rem]  lg:w-[12rem] lg:h-[16rem] md:w-[12rem] md:h-[16rem] h-[12rem] w-[9rem] col-span-1 bg-[#091525] rounded-[0.5rem] hover:scale-105 transition duration-300 border text-white" id="Productos">
-                        <img class="h-1/2  overflow-hidden rounded-[0.5rem] cursor-pointer" src="../image/mon.png" alt="foto de producto">
-                        <p class=" xl:mt-2 lg:mx-2.5 md:my-1.9 md:mx-1 text-wrap  my-1 mx-0.5 " id="nombreProducto" >Nombre del producto asdafasg asfsffsa a</p>
-                        <p class="lg:mx-2.5 md:my-1.9 md:mx-1 text-wrap  my-1 mx-0.5 font-bold">Precio: S/<span id="Precio">1234</span> </p>
-                        <button type="button" class="hover:bg-[#a9adb6] bg-[#e7e7e9] rounded-[0.8rem]  md:p-0.5 md:mt-0.5 xl:mt-2 lg:mx-[3rem] xl:mx-[3.5rem] mx-8 md:leading-4 leading-3 border hover:scale-105 active:scale-95 cursor-pointer text-black " onclick="">Añadir carrito</button>
-                    </div>
+
+
                 </section>
             </section>
 
@@ -112,30 +97,7 @@
             <section class="mb-8">
                 <h2 class="text-xl font-bold mb-4">Ofertas Especiales</h2>
                 <section class="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 gap-2 justify-self-center">
-                    <div class=" xl:w-[15rem] xl:h-[22rem]  lg:w-[12rem] lg:h-[16rem] md:w-[12rem] md:h-[16rem] h-[12rem] w-[9rem] col-span-1 bg-[#091525] rounded-[0.5rem] hover:scale-105 transition duration-300 border text-white" id="Productos">
-                        <img class="h-1/2  overflow-hidden rounded-[0.5rem] cursor-pointer" src="../image/mon.png" alt="foto de producto">
-                        <p class=" xl:mt-2 lg:mx-2.5 md:my-1.9 md:mx-1 text-wrap  my-1 mx-0.5 " id="nombreProducto" >Nombre del producto asdafasg asfsffsa a</p>
-                        <p class="lg:mx-2.5 md:my-1.9 md:mx-1 text-wrap  my-1 mx-0.5 font-bold">Precio: S/<span id="Precio">1234</span> </p>
-                        <button type="button" class="hover:bg-[#a9adb6] bg-[#e7e7e9] rounded-[0.8rem]  md:p-0.5 md:mt-0.5 xl:mt-2 lg:mx-[3rem] xl:mx-[3.5rem] mx-8 md:leading-4 leading-3 border hover:scale-105 active:scale-95 cursor-pointer text-black " onclick="">Añadir carrito</button>
-                    </div>
-                    <div class=" xl:w-[15rem] xl:h-[22rem]  lg:w-[12rem] lg:h-[16rem] md:w-[12rem] md:h-[16rem] h-[12rem] w-[9rem] col-span-1 bg-[#091525] rounded-[0.5rem] hover:scale-105 transition duration-300 border text-white" id="Productos">
-                        <img class="h-1/2  overflow-hidden rounded-[0.5rem] cursor-pointer" src="../image/mon.png" alt="foto de producto">
-                        <p class=" xl:mt-2 lg:mx-2.5 md:my-1.9 md:mx-1 text-wrap  my-1 mx-0.5 " id="nombreProducto" >Nombre del producto asdafasg asfsffsa a</p>
-                        <p class="lg:mx-2.5 md:my-1.9 md:mx-1 text-wrap  my-1 mx-0.5 font-bold">Precio: S/<span id="Precio">1234</span> </p>
-                        <button type="button" class="hover:bg-[#a9adb6] bg-[#e7e7e9] rounded-[0.8rem]  md:p-0.5 md:mt-0.5 xl:mt-2 lg:mx-[3rem] xl:mx-[3.5rem] mx-8 md:leading-4 leading-3 border hover:scale-105 active:scale-95 cursor-pointer text-black " onclick="">Añadir carrito</button>
-                    </div>
-                    <div class=" xl:w-[15rem] xl:h-[22rem]  lg:w-[12rem] lg:h-[16rem] md:w-[12rem] md:h-[16rem] h-[12rem] w-[9rem] col-span-1 bg-[#091525] rounded-[0.5rem] hover:scale-105 transition duration-300 border text-white" id="Productos">
-                        <img class="h-1/2  overflow-hidden rounded-[0.5rem] cursor-pointer" src="../image/mon.png" alt="foto de producto">
-                        <p class=" xl:mt-2 lg:mx-2.5 md:my-1.9 md:mx-1 text-wrap  my-1 mx-0.5 " id="nombreProducto" >Nombre del producto asdafasg asfsffsa a</p>
-                        <p class="lg:mx-2.5 md:my-1.9 md:mx-1 text-wrap  my-1 mx-0.5 font-bold">Precio: S/<span id="Precio">1234</span> </p>
-                        <button type="button" class="hover:bg-[#a9adb6] bg-[#e7e7e9] rounded-[0.8rem]  md:p-0.5 md:mt-0.5 xl:mt-2 lg:mx-[3rem] xl:mx-[3.5rem] mx-8 md:leading-4 leading-3 border hover:scale-105 active:scale-95 cursor-pointer text-black " onclick="">Añadir carrito</button>
-                    </div>
-                    <div class=" xl:w-[15rem] xl:h-[22rem]  lg:w-[12rem] lg:h-[16rem] md:w-[12rem] md:h-[16rem] h-[12rem] w-[9rem] col-span-1 bg-[#091525] rounded-[0.5rem] hover:scale-105 transition duration-300 border text-white" id="Productos">
-                        <img class="h-1/2  overflow-hidden rounded-[0.5rem] cursor-pointer" src="../image/mon.png" alt="foto de producto">
-                        <p class=" xl:mt-2 lg:mx-2.5 md:my-1.9 md:mx-1 text-wrap  my-1 mx-0.5 " id="nombreProducto" >Nombre del producto asdafasg asfsffsa a</p>
-                        <p class="lg:mx-2.5 md:my-1.9 md:mx-1 text-wrap  my-1 mx-0.5 font-bold">Precio: S/<span id="Precio">1234</span> </p>
-                        <button type="button" class="hover:bg-[#a9adb6] bg-[#e7e7e9] rounded-[0.8rem]  md:p-0.5 md:mt-0.5 xl:mt-2 lg:mx-[3rem] xl:mx-[3.5rem] mx-8 md:leading-4 leading-3 border hover:scale-105 active:scale-95 cursor-pointer text-black " onclick="">Añadir carrito</button>
-                    </div>
+
                 </section>
             </section>
         </section>
