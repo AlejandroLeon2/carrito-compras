@@ -1,17 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="src/style.css">
-    <script type="module" src="/js/main.js" defer></script>
     <title>Document</title>
 </head>
 
 
-<body class=" xl:text-xl text-justify md:text-[1rem] bg-[#F0E7D6] text-xs   xl:leading-7 md:leading-5 leading-4 min-h-screen flex flex-col relative">
-    <header class="grid grid-cols-12  shadow-xl pb-[2rem] md:py-[2rem]  ">
+<body class=" xl:text-xl md:text-[1rem] bg-[#F0E7D6] text-xs  text-center xl:leading-7 md:leading-5 leading-4  flex flex-col ">
+    <header class="grid grid-cols-12  shadow-xl pb-[2rem] md:py-[2rem] bg-white ">
         <img src="../image/logo01.webp"  alt="logo tienda" class="md:col-span-3 md:  h-18  mx-auto col-span-12" >
         <nav class="md:col-span-9 md: md:w-full col-span-12 grid grid-cols-12 place-items-center">
             <section class="md:col-start-1 grid grid-cols-8 col-span-8 col-start-2">
@@ -30,8 +28,8 @@
                     class="md:h-8 md:w-8"></a>
         </nav>
         <section class="flex items-center col-span-12 justify-center gap-8 mt-[1rem]">
-            <a class="font-semibold cursor-pointer hover:scale-105" type="button" onclick="" href="categorias.html">Accesorios</a>
-            <a class="font-semibold cursor-pointer hover:scale-105" type="button" onclick="" href="detalleProducto.html">Pc</a>
+            <a class="font-semibold cursor-pointer hover:scale-105" type="button"  href="src/categorias.html">Accesorios</a>
+            <a class="font-semibold cursor-pointer hover:scale-105" type="button" onclick="" href="src/detalleProducto.html">Pc</a>
             <a class="font-semibold cursor-pointer hover:scale-105" type="button" onclick="">Impresoras</a>
             <a class="font-semibold cursor-pointer hover:scale-110" type="button" onclick="">Laptop</a>
         </section>
@@ -39,13 +37,13 @@
     </header>
 
      <!-- Contenido principal -->
-     <main class="flex flex-col flex-grow ">
+     <main class="flex flex-col min-h-screen flex-grow border ">
         <!-- Sección de banner -->
         <section class="mx-auto">
-            <div class="relative w-full  overflow-hidden rounded-lg shadow-lg">
+            <div class="relative  overflow-hidden rounded-lg shadow ">
         
                 <!-- Slides -->
-                <div class="flex transition-transform duration-700 ease-in-out w-[17rem] md:w-[40rem] xl:w-[100rem] my-8 h-auto" id="slider">
+                <div class="flex transition-transform duration-700 ease-in-out w-[19rem] md:w-[40rem] xl:w-[90rem] my-8 h-auto" id="slider">
                     <div class="w-full flex-shrink-0"><img src="/image/slide1.jpg" class="w-full object-cover"></div>
                     <div class="w-full flex-shrink-0"><img src="/image/slide2.jpg" class="w-full object-cover"></div>
                     <div class="w-full flex-shrink-0"><img src="/image/slide3.jpg" class="w-full object-cover"></div>
@@ -64,7 +62,7 @@
                 </button>
         
                 <!-- Indicadores -->
-                <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+                <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2 ">
                     <span class="dot w-3 h-3 bg-white rounded-full cursor-pointer"></span>
                     <span class="dot w-3 h-3 bg-gray-400 rounded-full cursor-pointer"></span>
                     <span class="dot w-3 h-3 bg-gray-400 rounded-full cursor-pointer"></span>
@@ -76,18 +74,20 @@
         </section>
 
         <!-- Sección de productos -->
-        <section class="w-screen ">
+        <section class="w-full flex flex-col items-center  ">
             <!-- Lo Más Vendido -->
             <section class="mb-8">
-                <h2 class="text-xl font-bold mb-4">Lo Mas Vendido</h2>
-                <section class="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 gap-2 justify-self-center">
+                <h5 class="font-bold mb-4">Lo Mas Vendido</h5>
+                <section id="masVendido" class="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 gap-2 justify-self-center">
+
+
                 </section>
             </section>
 
             <!-- Nuevos Lanzamientos -->
             <section class="mb-8">
-                <h2 class="text-xl font-bold mb-4">Nuevos lanzamientos</h2>
-                <section class="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 gap-2 justify-self-center">
+                <h5 class="font-bold mb-4">Nuevos lanzamientos</h5>
+                <section id="nuevosLanzamientos" class="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 gap-2 justify-self-center">
 
 
                 </section>
@@ -95,8 +95,9 @@
 
             <!-- Ofertas Especiales -->
             <section class="mb-8">
-                <h2 class="text-xl font-bold mb-4">Ofertas Especiales</h2>
-                <section class="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 gap-2 justify-self-center">
+                <h5 class="font-bold mb-4">Ofertas Especiales</h5>
+                <section id="ofertasEspeciales" class="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 gap-2 justify-self-center">
+
 
                 </section>
             </section>
@@ -104,7 +105,7 @@
     </main>
 
     <footer
-        class="lg:pt-4 lg:justify-items-center lg:grid-cols-6 md:grid-cols-4 grid grid-cols-2  bg-gray-300 pt-2 w-full">
+        class="lg:pt-4 lg:justify-items-center lg:grid-cols-6 md:grid-cols-4 grid grid-cols-2  bg-[#a9adb6] pt-2 w-full">
         <section class="lg:col-start-2 text-center col-span-1">
             <h3 class="">Contactanos</h3>
             <div class="grid grid-cols-4 place-items-center md:gap-4">
@@ -124,11 +125,12 @@
             </div>
         </section>
         <section class="lg:col-span-2 md:col-span-2 col-span-2 mt-2 flex justify-self-center gap-4 ">
-            <a class="lg:px-1 lg:max-h-2/3 flex bg-gray-200 items-center max-h-2/3 h-18 xl:w-[12rem] w-[9rem]  rounded leading-5 hover:scale-105 transition duration-300" href=""><img
+            <a class=" px-1 lg:max-h-2/3 flex bg-white items-center max-h-2/3 h-18 xl:w-[12rem] w-[9rem]  rounded leading-5 hover:scale-105 transition duration-300" href=""><img
                     src="../image/libroReclamaciones.svg" alt="Libro de reclamaciones">Libro de reclamaciones</a>
-            <a class=" max-h-2/3 flex bg-gray-200 items-center h-18 xl:w-[12rem] w-[9rem] rounded px-1 leading-5 hover:scale-105 transition duration-300" href=""><img
+            <a class=" max-h-2/3 flex bg-white items-center h-18 xl:w-[12rem] w-[9rem] rounded px-1 leading-5 hover:scale-105 transition duration-300" href=""><img
                     src="../image/candado.svg" alt="Terminos y condiciones">Terminos y condiciones</a>
         </section>
     </footer>
+    <script type="module" src="src/js/main.js"></script>
 </body>
 </html>

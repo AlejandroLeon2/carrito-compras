@@ -2,9 +2,7 @@ const slider = document.getElementById("slider");
 const prev = document.getElementById("prev");
 const next = document.getElementById("next");
 const dots = document.querySelectorAll(".dot");
-const togglePlay = document.getElementById("togglePlay");
-const playIcon = document.getElementById("playIcon");
-const pauseIcon = document.getElementById("pauseIcon");
+
 
 let index = 0;
 let interval = setInterval(nextSlide, 3000);
@@ -31,20 +29,6 @@ function prevSlide() {
     updateSlide();
 }
 
-// Pausar o reanudar autoplay
-togglePlay.addEventListener("click", () => {
-    if (isPlaying) {
-        clearInterval(interval);
-        playIcon.classList.remove("hidden");
-        pauseIcon.classList.add("hidden");
-    } else {
-        interval = setInterval(nextSlide, 3000);
-        playIcon.classList.add("hidden");
-        pauseIcon.classList.remove("hidden");
-    }
-    isPlaying = !isPlaying;
-});
-
 // Eventos de botones
 next.addEventListener("click", nextSlide);
 prev.addEventListener("click", prevSlide);
@@ -56,3 +40,5 @@ dots.forEach((dot, i) => {
         updateSlide();
     });
 });
+
+  
