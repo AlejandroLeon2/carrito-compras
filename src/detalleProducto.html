@@ -3,8 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<<<<<<< HEAD
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
+=======
+    <title>DetalleProducto</title>
+    <link rel="stylesheet" href="src/style.css">
+>>>>>>> Miriam-detalleProducto
 </head>
 <body class="bg-gray-100 md:text-base text-sm">
   <header class="grid grid-cols-12  shadow-xl pb-[2rem] md:py-[2rem]  ">
@@ -27,28 +32,23 @@
     </nav>
  </header>
 
-    <main class="h-[30rem]  w-[19rem] md:w-[45rem] lg:w-2/3 my-8 mx-auto text-justify rounded">
-      <section class="grid grid-cols-1 md:grid-cols-2 gap-4 border md:w-full">
-        <div class="flex flex-col items-center justify-center">
-          <div id="mainImage" class="relative max-h-96">
-            <img src="https://pesonyb2c.vtexassets.com/arquivos/ids/222922-1600-auto?v=638409142731670000&width=1600&height=auto&aspect=true" alt="Imagen del producto" class="md:w-full w-[20rem] max-h-[20rem] object-cover rounded-lg">
-          </div>
-          <div class="flex mt-4 gap-1 flex-wrap justify-center  w-full"> 
-            <img src="https://pesonyb2c.vtexassets.com/arquivos/ids/224784-1600-auto?v=638769496429000000&width=1600&height=auto&aspect=true" alt="Vista 1" class="w-24 h-24 object-cover rounded-lg cursor-pointer thumbnail">
-            <img src="https://pesonyb2c.vtexassets.com/arquivos/ids/224791-1600-auto?v=638769496429470000&width=1600&height=auto&aspect=true" alt="Vista 2" class="w-24 h-24 object-cover rounded-lg cursor-pointer thumbnail">
-            <img src="https://pesonyb2c.vtexassets.com/arquivos/ids/224786-1600-auto?v=638769496429130000&width=1600&height=auto&aspect=true" alt="Vista 3" class="w-24 h-24 object-cover rounded-lg cursor-pointer thumbnail">
+    <main class="h-[30rem]  w-[10rem] md:w-[20rem] lg:w-2/3 my-8 mx-auto rounded">
+      <section class="grid grid-cols-1 md:grid-cols-2 gap-4 md:w-full rounded-lg bg-white overflow-hidden">
+        <div class="flex flex-col">
+          <div id="mainImage" class="relative h-full">
+            <img id="imagenProducto" src="https://pesonyb2c.vtexassets.com/arquivos/ids/222922-1600-auto?v=638409142731670000&width=1600&height=auto&aspect=true" alt="Imagen del producto" class="md:w-full w-[20rem] h-full object-cover">
           </div>
         </div>
-        <div class="flex flex-col w-[18rem] xl:w-[22rem] mx-auto mb-4">
-            <h1 class="text-3xl font-bold mb-4 mx-2">Audífonos inalámbricos con micrófono INZONE H5 para juegos</h1>
-            <p class="text-gray-700 mb-4 mx-2">Detección precisa de rivales gracias al Sonido espacial 360 para juegos, Juega durante horas con comodidad gracias a su diseño ligero de 260 g y una presión lateral mínima, Comunicaciones de equipo fluidas 
+        <div class="flex flex-col mb-4 gap-2 p-5">
+            <h1 class="text-3xl font-bold mb-4 mx-2" id="nombreProducto">Audífonos inalámbricos con micrófono INZONE H5 para juegos</h1>
+            <p class="text-gray-700 mb-4 mx-2" id="descripcionProducto">Detección precisa de rivales gracias al Sonido espacial 360 para juegos, Juega durante horas con comodidad gracias a su diseño ligero de 260 g y una presión lateral mínima, Comunicaciones de equipo fluidas 
                 gracias al micrófono tipo boom bidireccional con tecnología de reducción de ruido con inteligencia artificial.</p>
-            <p class="text-2xl font-bold mb-2 mx-2">Precio: S/. 199.99</p>
+            <p class="text-4xl font-bold mb-2 mx-2 text-cyan-700" id="precioProducto">Precio: S/. 199.99</p>
             <div class="flex items-center mb-4 mx-2">
               <span class="text-gray-700 mr-2">Cantidad:</span>
               <input type="number" min="1" value="1" class="w-20 text-center border rounded px-2 py-1">
-            </div>
-            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-2 mx-[3rem] rounded">Agregar al Carrito</button>
+          </div>
+            <button class="bg-cyan-600 hover:ring-2 hover:ring-cyan-700 hover:ring-offset-2 hover:text-gray-200 mt-auto hover:bg-cyan-700 transition text-white font-bold py-3 px-2 mx-[3rem] rounded">Agregar al Carrito</button>
           </div>
         </section>
         
@@ -81,6 +81,12 @@
     </section>
   </footer>
 
+<<<<<<< HEAD
   <script src="js/script.js"></script>
+=======
+  <script src="../js/script.js"></script>
+  
+  <script type="module" src="public/js/productoDetalle.js"></script>
+>>>>>>> Miriam-detalleProducto
     </body>
 </html>
