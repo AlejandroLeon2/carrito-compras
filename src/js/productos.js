@@ -12,32 +12,82 @@ export class Producto {
 
         Producto.listaProductos.push(this);
     }
+
     mostrarProducto(){
         const catalogo = document.getElementById("catalogo");
-        let html = ""; 
-        Producto.listaProductos.forEach(({ nombre, precio, url }) => {
-            html += `
+            const html = Producto.listaProductos.map(({ nombre, precio, url, codigo }) => `
                 <div class="flex flex-col xl:w-[15rem] xl:h-[22rem] lg:w-[12rem] lg:h-[16rem] md:w-[12rem] md:h-[16rem] h-[12rem] w-[9rem] col-span-1 bg-gray-100 dark:bg-[#091525] rounded hover:scale-105 transition duration-300 border-black dark:border-white border dark:text-white text-black" id="cardProducto">
                     <img class="h-1/2 overflow-hidden rounded-t cursor-pointer w-full" src="${url}" alt="foto de producto">
                     <p class="xl:mt-2 lg:mx-2.5 md:my-1.9 md:mx-1 text-wrap my-1 mx-0.5" id="nombreProducto">${nombre}</p>
-                    <p class="lg:mx-2.5 md:my-1.9 md:mx-1 text-wrap my-1 mx-0.5 font-bold">Precio: S/<span id="Precio">${precio}</span></p>
-                    <button id="añadir-carrito" data-nombre="${nombre}" data-precio="${precio}" data-url="${url}" type="button" class="dark:bg-gray-700 dark:hover:bg-gray-800 bg-[#1d2027e8] hover:bg-[#091525] py-0.5 rounded-[0.8rem] md:p-0.5 mb-2 mt-auto  lg:mx-[3rem] xl:mx-[3.8rem] md:mx-[3rem] mx-9 md:leading-4 leading-3 border hover:scale-105 active:scale-95 cursor-pointer text-white dark:text-dark ">
+                    <p class="lg:mx-2.5 md:my-1.9 md:mx-1 text-wrap my-1 mx-0.5 font-semibold">
+                        Precio: S/<span id="Precio">${precio}</span>
+                    </p>
+                    <button id="añadir-carrito" data-nombre="${nombre}" data-precio="${precio}" data-url="${url}" type="button" class="dark:bg-gray-700 dark:hover:bg-gray-800 text-sm bg-[#1d2027e8] hover:bg-[#091525] py-1 px-1 rounded-[0.7rem] mt-auto mx-auto xl:w-[5.5rem] lg:w-[5rem] w-[4.5rem] md:leading-4 leading-3 border hover:scale-105 active:scale-95 cursor-pointer text-white">
                         Añadir carrito
                     </button>
+                    <button type="button" codigo="${codigo}" class="ver-mas w-[5rem] text-xs mx-auto mb-2 hover:scale-105 active:scale-95 cursor-pointer text-black dark:text-white">
+                        Ver más
+                    </button>
                 </div>
-            `;
-        });
+            `).join('');
+            catalogo.innerHTML = html;
+        
         catalogo.innerHTML = html; 
-
     }
-    filtrarNuevo(){
+    
 
+    filtrarProducto(categoria) {
+        const catalogo = document.getElementById("catalogo");
+        const productosFiltrados = Producto.listaProductos.filter(producto => producto.categoria === categoria);
+        
+        if (productosFiltrados.length) {
+            const html = productosFiltrados.map(({ nombre, precio, url, codigo }) => `
+                <div class="flex flex-col xl:w-[15rem] xl:h-[22rem] lg:w-[12rem] lg:h-[16rem] md:w-[12rem] md:h-[16rem] h-[12rem] w-[9rem] col-span-1 bg-gray-100 dark:bg-[#091525] rounded hover:scale-105 transition duration-300 border-black dark:border-white border dark:text-white text-black" id="cardProducto">
+                    <img class="h-1/2 overflow-hidden rounded-t cursor-pointer w-full" src="${url}" alt="foto de producto">
+                    <p class="xl:mt-2 lg:mx-2.5 md:my-1.9 md:mx-1 text-wrap my-1 mx-0.5" id="nombreProducto">${nombre}</p>
+                    <p class="lg:mx-2.5 md:my-1.9 md:mx-1 text-wrap my-1 mx-0.5 font-semibold">Precio: S/<span id="Precio">${precio}</span></p>
+                    <button id="añadir-carrito" data-nombre="${nombre}" data-precio="${precio}" data-url="${url}" type="button" class="dark:bg-gray-700 dark:hover:bg-gray-800 text-sm bg-[#1d2027e8] hover:bg-[#091525] py-1 px-1 rounded-[0.7rem] mt-auto mx-auto xl:w-[5.5rem] lg:w-[5rem] w-[4.5rem] md:leading-4 leading-3 border hover:scale-105 active:scale-95 cursor-pointer text-white">
+                        Añadir carrito
+                    </button>
+                    <button type="button" codigo="${codigo}" class="ver-mas w-[5rem] text-xs mx-auto mb-2 hover:scale-105 active:scale-95 cursor-pointer text-black dark:text-white">Ver más</button>
+                </div>
+            `).join('');
+    
+            catalogo.innerHTML = html;
+        } else {
+            catalogo.innerHTML = `<p class="text-center text-gray-500 dark:text-gray-300">No hay productos en esta categoría.</p>`;
+        }
     }
-    filtrarOferta(){
 
-    }
-    filtrarPrecio(){
-
+    filtrarCantidad(seccion, ids) {
+        const seccionBox = document.getElementById(ids);
+        const productosFiltrados = Producto.listaProductos
+          .filter(producto => producto[seccion] === true)
+          .slice(0, 4);
+      
+        if (productosFiltrados.length) {
+            const html = productosFiltrados.map(({ nombre, precio, url, codigo }) => {
+                return `
+                <div class="flex flex-col xl:w-[15rem] xl:h-[22rem] lg:w-[12rem] lg:h-[16rem] md:w-[12rem] md:h-[16rem] h-[12rem] w-[9rem] col-span-1 bg-gray-100 dark:bg-[#091525] rounded hover:scale-105 transition duration-300 border-black dark:border-white border dark:text-white text-black" id="cardProducto">
+                    <img class="h-1/2 overflow-hidden rounded-t cursor-pointer w-full" src="${url}" alt="foto de producto">
+                    <p class="xl:mt-2 lg:mx-2.5 md:my-1.9 md:mx-1 text-wrap my-1 mx-0.5" id="nombreProducto">${nombre}</p>
+                    <p class="lg:mx-2.5 md:my-1.9 md:mx-1 text-wrap my-1 mx-0.5 font-semibold">
+                    Precio: S/<span id="Precio">${precio}</span>
+                    </p>
+                    <button id="añadir-carrito" data-nombre="${nombre}" data-precio="${precio}" data-url="${url}" type="button" class="dark:bg-gray-700 dark:hover:bg-gray-800 text-sm bg-[#1d2027e8] hover:bg-[#091525] py-1 px-1 rounded-[0.7rem] mt-auto mx-auto xl:w-[5.5rem] lg:w-[5rem] w-[4.5rem] md:leading-4 leading-3 border hover:scale-105 active:scale-95 cursor-pointer text-white">
+                    Añadir carrito
+                    </button>
+                    <button type="button" codigo="${codigo}" class="ver-mas w-[5rem] text-xs mx-auto mb-2 hover:scale-105 active:scale-95 cursor-pointer text-black dark:text-white">
+                    Ver más
+                    </button>
+                </div>
+                `;
+            }).join('');
+          
+          seccionBox.innerHTML = html;
+        } else {
+          seccionBox.innerHTML = `<p class="text-center text-gray-500 dark:text-gray-300">No hay productos en esta categoría.</p>`;
+        }
     }
 }
 
@@ -205,3 +255,6 @@ const producto15 = new Producto(
     "Accesorios",
     true
 );
+
+
+  

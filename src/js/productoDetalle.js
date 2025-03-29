@@ -1,10 +1,10 @@
-import { productos } from "./productos";
+import { Producto } from "./productos.js";
 
 document.addEventListener("DOMContentLoaded", function() {
   const urlParams = new URLSearchParams(window.location.search);
   const productoId = urlParams.get("codigo");
   if (productoId) {
-      const producto = productos.find(p => p.codigo == productoId);
+      const producto = Producto.listaProductos.find(p => p.codigo == productoId);
 
       if (producto) {
           document.getElementById("nombreProducto").textContent = producto.nombre;

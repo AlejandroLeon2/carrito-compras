@@ -8,7 +8,7 @@
     <title>Categorias</title>
 </head>
 
-<body class="xl:text-xl md:text-[1rem] bg-[#F0E7D6] dark:bg-[#091525] text-xs  text-center xl:leading-7 md:leading-5 leading-4  flex flex-col ">
+<body class="xl:text-base md:text-[1rem] bg-[#F0E7D6] dark:bg-[#091525] text-xs  text-center xl:leading-7 md:leading-5 leading-4  flex flex-col ">
 
     <header class="grid grid-cols-12  shadow-xl pb-[2rem] md:py-[2rem] bg-white dark:bg-[#091525] dark:text-white">
         <img src="../image/logo01.webp"  alt="logo tienda" class="md:col-span-3 md:  h-18  mx-auto col-span-12" >
@@ -29,10 +29,11 @@
                     class="md:h-8 md:w-8 dark:invert"></a>
         </nav>
         <section class="flex items-center col-span-12 justify-center gap-8 mt-[1rem]">
-            <button class="font-semibold cursor-pointer hover:scale-105" type="button" >Accesorios</button>
-            <button class="font-semibold cursor-pointer hover:scale-105" type="button" >Pc</button>
-            <button class="font-semibold cursor-pointer hover:scale-105" type="button" >Impresoras</button>
-            <button class="font-semibold cursor-pointer hover:scale-110" type="button" >Laptop</button>
+            <a id="mostrarCatalogo" class="font-semibold cursor-pointer hover:scale-105" type="button" >Catalogo</a>
+            <a id="mostrarAccesorios" class="font-semibold cursor-pointer hover:scale-105" type="button" >Accesorios</a>
+            <a id="mostrarPc" class="font-semibold cursor-pointer hover:scale-105" type="button" >Pc</a>
+            <a id="mostrarImpresoras" class="font-semibold cursor-pointer hover:scale-105" type="button" >Impresoras</a>
+            <a id="mostrarLaptop" class="font-semibold cursor-pointer hover:scale-110" type="button" >Laptop</a>
         </section>
 
     </header>
@@ -77,8 +78,9 @@
         </section>
     </footer>
     <section class="hidden bg-gray-900/50 fixed inset-0  items-center justify-center" id="modal">
-        <div class="w-[20rem] h-[15rem] md:w-[25rem] md:h-[20rem] bg-blue-100 border-2 border-gray-300 rounded-sm flex flex-col gap-0.5 p-4">
-          <h5 class="text-lg font-semibold md:my-2 my-1 text-gray-800">Precio</h5>
+        <div class="w-[20rem] h-[16rem] md:w-[25rem] md:h-[18rem] bg-[#091525] border-2  rounded-sm flex flex-col gap-0.5 p-4 text-black dark:text-white ">
+          <button id="closeModal" class="w-[1.5rem] h-[1.5rem] bg-red-500 text-white py-1 px-2 rounded ml-auto">X</button>
+          <h5 class="text-lg font-semibold md:my-2 my-1 text-black dark:text-white  border rounded ">Precio</h5>  
           <div class="flex flex-wrap gap-4 ml-4">
             <label class="flex items-center mb-1">
               <input type="radio" name="price" value="low" class="mr-2"> + $50
@@ -94,7 +96,7 @@
             </label>
           </div>
       
-          <h5 class="text-lg font-semibold md:my-4 text-gray-800">Estado</h5>
+          <h5 class="text-lg font-semibold md:my-4 text-black dark:text-white  border rounded ">Estado</h5>
           <div class="flex flex-wrap gap-4 ml-4">
             <label class="flex items-center mb-1">
               <input type="checkbox" name="status" value="new" class="mr-2"> Nuevo
@@ -103,23 +105,17 @@
               <input type="checkbox" name="status" value="offer" class="mr-2"> Oferta
             </label>
           </div>
-      
-          <button type="button" id="apply-filters" 
-            class="bg-blue-600 hover:bg-blue-700 text-white font-semibold p-2 rounded 
-                   mt-4 mx-auto leading-4 border hover:scale-105 active:scale-95 cursor-pointer">
-            Aplicar
-          </button>
+          <button type="button" id="apply-filters" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold p-2 rounded  mt-4 mx-auto leading-4 border hover:scale-105 active:scale-95 cursor-pointer">Aplicar</button>
         </div>
       </section>
       
-      <section class="hidden fixed inset-0 bg-black/50" id="overlay">
-        <div id="sidePanel" class="fixed top-0 right-[-300px] w-[17rem] h-full bg-blue-300 shadow-lg transform transition-transform duration-300">
+      <section class="hidden fixed inset-0 bg-black/50 text-xs md:text-base " id="overlay">
+        <div id="sidePanel" class="fixed top-0 right-[-300px] w-[17rem] h-full md:w-[20rem] bg-cyan-50 dark:bg-gray-700 shadow-lg transform transition-transform duration-300">
           <div class="p-4">
-            <h3 class="text-lg font-bold text-white mb-4">Carrito de Compras</h3>
+            <h3 class="text-lg font-bold dark:text-white mb-4 text-black">Carrito de Compras</h3>
+          <a id="enviarCarrito" type="button" href="carrito.html" codigo="${codigo}" class="bg-green-500 w-[6rem] py-1 hover:scale-105 active:scale-95 cursor-pointer text-black dark:text-white rounded mb-2 ">Pagar</a>
             <ul id="productList" class="  "></ul>
-            <button id="closePanel" class="absolute top-4 right-4 bg-blue-500 text-white py-2 px-4 rounded">
-              Cerrar
-            </button>
+            <button id="closePanel" class="absolute top-4 right-2 bg-red-500 text-white py-0.5 px-2 rounded">X</button>
           </div>
         </div>
       </section>

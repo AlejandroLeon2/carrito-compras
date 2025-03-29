@@ -1,11 +1,11 @@
 import { Producto } from './productos.js';
 
-
+//==============================================================>
+//             Guarda productos en array carrito 
 const carrito = [];
 const array = document.getElementById("array");
 
 function mostrarCard() {
-
 
     const botones = document.querySelectorAll("#añadir-carrito");
     botones.forEach(boton => {
@@ -22,27 +22,37 @@ function mostrarCard() {
     });
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+mostrarCard ();
+
+document.addEventListener(`DOMContentLoaded`,()=>{
+  document.getElementById("mostrarCatalogo").addEventListener("click",()=>{
     Producto.prototype.mostrarProducto();
-    mostrarCard ();
+  });
+  document.getElementById("mostrarPc").addEventListener("click",()=>{
+    Producto.prototype.filtrarProducto("Pc")
+  });
+  document.getElementById("mostrarImpresoras").addEventListener("click",()=>{
+    Producto.prototype.filtrarProducto("Impresoras")
+  });
+  document.getElementById("mostrarLaptop").addEventListener("click",()=>{
+    Producto.prototype.filtrarProducto("Laptop")
+  });
+  document.getElementById("mostrarAccesorios").addEventListener("click",()=>{
+    Producto.prototype.filtrarProducto("Accesorios")
+  });
+
 });
 
-
-// Obtener elementos del DOM
+// =====================================================================>
+//                 modal filters
+const closeModal = document.getElementById (`closeModal`);
 const modal = document.getElementById('modal');
 const filtroButton = document.getElementById('filtro');
-const applyFiltersButton = document.getElementById('apply-filters');
+const apply_filters = document.getElementById('apply-filters');
 
-// Mostrar el modal
-const showModal = () => {
-  modal.classList.remove('hidden');
-  modal.classList.add('flex'); // Asegura que el modal sea visible y con diseño flexible
-};
-
-// Ocultar el modal
-const hideModal = () => {
-  modal.classList.add('hidden');
-  modal.classList.remove('flex');
+const Modal = () => {
+  modal.classList.toggle('hidden');
+  modal.classList.toggle('flex');
 };
 
 // Capturar los valores seleccionados
@@ -53,57 +63,45 @@ const applyFilters = () => {
   const priceValue = selectedPrice ? selectedPrice.value : null; // Captura el valor del radio seleccionado
   const statusValues = Array.from(selectedStatuses).map((checkbox) => checkbox.value); // Captura los valores de los checkboxes seleccionados
 
-  // Mostrar los valores en consola
   console.log('Precio seleccionado:', priceValue);
   console.log('Estados seleccionados:', statusValues);
 
-  // Aquí puedes implementar lógica adicional para aplicar los filtros en tu página, como filtrar productos dinámicamente.
-
-  // Ocultar el modal después de aplicar los filtros
-  hideModal();
+  Modal();
 };
 
-// Event listeners para botones
-filtroButton.addEventListener('click', showModal); // Mostrar el modal
-applyFiltersButton.addEventListener('click', applyFilters); // Aplicar los filtros y ocultar el modal
 
+filtroButton.addEventListener('click', Modal);
+closeModal.addEventListener(`click`,Modal)
+apply_filters.addEventListener('click', applyFilters);
 
+//=============================================================>
+//               modal carrito
 
-
-  
-  // Obtener elementos del DOM
   const togglePanelButton = document.getElementById("togglePanel");
   const sidePanel = document.getElementById("sidePanel");
   const overlay = document.getElementById("overlay");
   const productList = document.getElementById("productList");
   const closePanel = document.getElementById("closePanel");
   
-  // Función para mostrar el panel
-  const showPanel = () => {
-    overlay.classList.remove("hidden");
-    sidePanel.style.transform = "translateX(-300px)"; // Mover el panel a la vista
+  const hiddenPanel = () => {
+    overlay.classList.toggle("hidden");
+    const isVisible = sidePanel.classList.toggle("-translate-x-[300px]");
+    sidePanel.classList.toggle("translate-x-0", !isVisible);
   };
   
-  // Función para cerrar el panel
-  const hidePanel = () => {
-    overlay.classList.add("hidden");
-    sidePanel.style.transform = "translateX(0)"; // Ocultar el panel
-  };
-  
-  // Función para renderizar productos en el carrito
-  const renderCarrito = () => {
-    productList.innerHTML = ""; // Limpiar contenido previo
+  const modalCarrito = () => {
+    productList.innerHTML = ""; 
     carrito.forEach((producto, index) => {
       const li = document.createElement("li");
-      li.classList.add("flex", "items-center", "rounded", "justify-center", "mb-4" , "bg-amber-800", "border-black","border","h-[5rem]", "overflow-hidden");
+      li.classList.add("flex", "items-center", "rounded", "justify-center", "mb-4" ,"dark:text-white","text-black", "dark:bg-[#272829]","bg-[#f0e7d6]", "border-black","dark:border-white","border","h-[5rem]", "overflow-hidden","items-start","hover:scale-105");
   
       li.innerHTML = `
         <img src="${producto.url}" alt="${producto.nombre}" class="w-[6rem]  h-full rounded-l shadow-xl">
         <div class="flex-1">
           <p class="font-semibold">${producto.nombre}</p>
-          <p class="text-sm text-gray-700">S/ ${producto.precio}</p>
+          <p class="text-sm text-black dark:text-white">S/ ${producto.precio}</p>
         </div>
-        <button class="bg-red-500 text-white py-1 px-2 rounded remove-btn mr-2" data-index="${index}">X</button>
+        <button class="bg-red-500 text-white px-1 py-0.5 rounded remove-btn  mr-1 mt-1 hover:scale-105 active:scale-95 cursor-pointer" data-index="${index}">X</button>
       `;
       productList.appendChild(li);
     });
@@ -114,16 +112,34 @@ applyFiltersButton.addEventListener('click', applyFilters); // Aplicar los filtr
       button.addEventListener("click", (e) => {
         const productIndex = e.target.getAttribute("data-index");
         carrito.splice(productIndex, 1); // Eliminar producto del array
-        renderCarrito(); // Actualizar la lista
+        modalCarrito(); // Actualizar la lista
       });
     });
   };
   
-  // Event listeners
   togglePanelButton.addEventListener("click", () => {
-    renderCarrito(); // Renderizar los productos en el panel
-    showPanel();
+    modalCarrito(); 
+    hiddenPanel();
   });
+
   
-  closePanel.addEventListener("click", hidePanel);
+  closePanel.addEventListener("click", hiddenPanel);
+  //========================================================>
+    //subiendo carrito al local Storage
   
+  document.getElementById("enviarCarrito").addEventListener("click", ()=>{
+    localStorage.setItem("carrito", JSON.stringify(carrito));
+  })
+  
+//==================================================>
+ // redirecciona a la pagina detalle Producto
+
+  document.addEventListener("DOMContentLoaded", function() {
+   
+    catalogo.addEventListener("click", function(event) {
+      if (event.target.classList.contains("ver-mas")) {
+        const codigo = event.target.getAttribute("codigo");
+        window.location.href = `../src/detalleProducto.html?codigo=${codigo}`;
+      }
+    });
+  });

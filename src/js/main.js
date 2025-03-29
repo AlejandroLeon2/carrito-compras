@@ -1,3 +1,5 @@
+import { Producto } from "./productos.js";
+
 const slider = document.getElementById("slider");
 const prev = document.getElementById("prev");
 const next = document.getElementById("next");
@@ -41,4 +43,12 @@ dots.forEach((dot, i) => {
     });
 });
 
-  
+//====================================>
+// muestra productos nuevo y en oferta
+
+    document.addEventListener('DOMContentLoaded', () => {
+        Producto.prototype.filtrarCantidad("nuevo","nuevosLanzamientos");
+        Producto.prototype.filtrarCantidad("enOferta","ofertasEspeciales");
+    });
+    
+    
