@@ -1,17 +1,14 @@
-function leerLocalStorage(carrito) {
-    return JSON.parse(localStorage.getItem(carrito)) || [];
-  }
 
-  const carrito = leerLocalStorage("carrito");
 
-  // Ahora 'carrito' contendrá el array con los objetos guardados,
-  // o un array vacío [] en caso de que no existan datos en la clave "carrito".
+const carrito  = JSON.parse(localStorage.getItem('carrito'));
+
   console.log(carrito);
 
   function renderCarrito(carritoItems) {
     const html = carritoItems.map(item => {
       // Calculamos el subtotal para cada item
-      const subtotal = item.precio * item.cantidad;
+      const precios = parseInt(item.precio,10)
+      const subtotal = precios * item.cantidad;
       
       return `
         <tr class="border-b border-gray-200 hover:bg-gray-50">
@@ -21,12 +18,12 @@ function leerLocalStorage(carrito) {
               <span>${item.nombre}</span>
             </div>
           </td>
-          <td class="py-3 px-6 text-center">S/ ${item.precio}</td>
+          <td class="py-3 px-6 text-center">S/ ${precios}</td>
           <td class="py-3 px-6 text-center">
             <div class="flex justify-center items-center">
-              <button class="disminuir bg-gray-200 px-2 py-1 rounded-l" data-nombre="${item.nombre}">-</button>
-              <span class="bg-gray-100 px-4 py-1">${item.cantidad}</span>
-              <button class="aumentar bg-gray-200 px-2 py-1 rounded-r" data-nombre="${item.nombre}">+</button>
+              <input 
+  type="number" 
+value="${+item.cantidad}" data-nombre="${item.nombre}" class="cantidad-input bg-gray-100 px-4 py-1 rounded" />
             </div>
           </td>
           <td class="py-3 px-6 text-center">S/ ${subtotal.toFixed(2)}</td>
@@ -42,6 +39,10 @@ function leerLocalStorage(carrito) {
     // Mostrar el resultado en el tbody con id "carrito"
     document.getElementById("carrito").innerHTML = html;
   }
+  document.addEventListener("finalizarCarrito",()=>{
+
+    
+  });
   document.addEventListener("DOMContentLoaded", function() {
   renderCarrito(carrito);
-  })
+  });

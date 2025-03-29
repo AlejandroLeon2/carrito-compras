@@ -3,9 +3,8 @@ import { Producto } from './productos.js';
 //==============================================================>
 //             Guarda productos en array carrito 
 const carrito = [];
-const array = document.getElementById("array");
 
-function mostrarCard() {
+export function mostrarCard() {
 
     const botones = document.querySelectorAll("#añadir-carrito");
     botones.forEach(boton => {
@@ -17,29 +16,39 @@ function mostrarCard() {
             const producto = { nombre, precio, url };
 
             carrito.push(producto);
-            array.textContent = JSON.stringify(carrito, null, 2);
+
         });
     });
 }
 
-mostrarCard ();
+
 
 document.addEventListener(`DOMContentLoaded`,()=>{
+  
   document.getElementById("mostrarCatalogo").addEventListener("click",()=>{
     Producto.prototype.mostrarProducto();
+    mostrarCard ();
   });
   document.getElementById("mostrarPc").addEventListener("click",()=>{
     Producto.prototype.filtrarProducto("Pc")
+    mostrarCard ();
   });
   document.getElementById("mostrarImpresoras").addEventListener("click",()=>{
     Producto.prototype.filtrarProducto("Impresoras")
+    mostrarCard ();
   });
   document.getElementById("mostrarLaptop").addEventListener("click",()=>{
     Producto.prototype.filtrarProducto("Laptop")
+    mostrarCard ();
   });
   document.getElementById("mostrarAccesorios").addEventListener("click",()=>{
     Producto.prototype.filtrarProducto("Accesorios")
+    mostrarCard ();
   });
+
+    Producto.prototype.filtrarCantidad("nuevo","nuevosLanzamientos");
+    Producto.prototype.filtrarCantidad("enOferta","ofertasEspeciales");
+
 
 });
 
@@ -116,11 +125,13 @@ apply_filters.addEventListener('click', applyFilters);
       });
     });
   };
-  
-  togglePanelButton.addEventListener("click", () => {
-    modalCarrito(); 
-    hiddenPanel();
-  });
+  document.addEventListener ("DOMContentLoaded",()=>{
+    togglePanelButton.addEventListener("click", () => {
+      modalCarrito(); 
+      hiddenPanel();
+    });
+  })
+
 
   
   closePanel.addEventListener("click", hiddenPanel);
@@ -143,3 +154,48 @@ apply_filters.addEventListener('click', applyFilters);
       }
     });
   });
+
+  //================================================>
+  // carrucel
+    const slider = document.getElementById("slider");
+const prev = document.getElementById("prev");
+const next = document.getElementById("next");
+const dots = document.querySelectorAll(".dot");
+
+
+let index = 0;
+let interval = setInterval(nextSlide, 3000);
+let isPlaying = true;
+
+// Función para cambiar slide
+function updateSlide() {
+    slider.style.transform = `translateX(-${index * 100}%)`;
+    dots.forEach((dot, i) => {
+        dot.classList.toggle("bg-white", i === index);
+        dot.classList.toggle("bg-gray-400", i !== index);
+    });
+}
+
+// Siguiente slide
+function nextSlide() {
+    index = (index + 1) % dots.length;
+    updateSlide();
+}
+
+// Slide anterior
+function prevSlide() {
+    index = (index - 1 + dots.length) % dots.length;
+    updateSlide();
+}
+
+// Eventos de botones
+next.addEventListener("click", nextSlide);
+prev.addEventListener("click", prevSlide);
+
+// Eventos de indicadores
+dots.forEach((dot, i) => {
+    dot.addEventListener("click", () => {
+        index = i;
+        updateSlide();
+    });
+});

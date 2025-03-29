@@ -11,7 +11,7 @@
 <body class="xl:text-base md:text-[1rem] bg-[#F0E7D6] dark:bg-[#091525] text-xs  text-center xl:leading-7 md:leading-5 leading-4  flex flex-col ">
 
     <header class="grid grid-cols-12  shadow-xl pb-[2rem] md:py-[2rem] bg-white dark:bg-[#091525] dark:text-white">
-        <img src="../image/logo01.webp"  alt="logo tienda" class="md:col-span-3 md:  h-18  mx-auto col-span-12" >
+      <a href="../index.html" class="md:col-span-3 md:  h-18  mx-auto col-span-12"><img src="../image/logo01.webp" class="md:col-span-3 md:  h-18  mx-auto col-span-12"  alt="logo tienda"  ></a>
         <nav class="md:col-span-9 md: md:w-full col-span-12 grid grid-cols-12 place-items-center">
             <section class="md:col-start-1 grid grid-cols-8 col-span-8 col-start-2">
                 <form class="relative md:w-[26rem] xl:w-[40rem] w-[13rem] " action="/buscar" method="GET" role="search">
@@ -79,7 +79,7 @@
     </footer>
     <section class="hidden bg-gray-900/50 fixed inset-0  items-center justify-center" id="modal">
         <div class="w-[20rem] h-[16rem] md:w-[25rem] md:h-[18rem] bg-[#091525] border-2  rounded-sm flex flex-col gap-0.5 p-4 text-black dark:text-white ">
-          <button id="closeModal" class="w-[1.5rem] h-[1.5rem] bg-red-500 text-white py-1 px-2 rounded ml-auto">X</button>
+          <button id="closeModal" class="w-[1.5rem] h-[1.5rem] bg-red-500 text-white md:w-[2rem] md:h-[2rem] py-1 px-2 rounded ml-auto">X</button>
           <h5 class="text-lg font-semibold md:my-2 my-1 text-black dark:text-white  border rounded ">Precio</h5>  
           <div class="flex flex-wrap gap-4 ml-4">
             <label class="flex items-center mb-1">
@@ -113,7 +113,7 @@
         <div id="sidePanel" class="fixed top-0 right-[-300px] w-[17rem] h-full md:w-[20rem] bg-cyan-50 dark:bg-gray-700 shadow-lg transform transition-transform duration-300">
           <div class="p-4">
             <h3 class="text-lg font-bold dark:text-white mb-4 text-black">Carrito de Compras</h3>
-          <a id="enviarCarrito" type="button" href="carrito.html" codigo="${codigo}" class="bg-green-500 w-[6rem] py-1 hover:scale-105 active:scale-95 cursor-pointer text-black dark:text-white rounded mb-2 ">Pagar</a>
+          <a id="enviarCarrito" type="button" href="carrito.html" codigo="${codigo}" class="bg-green-500 w-[6rem] md:w-[7rem] px-4 py-1 hover:scale-105 active:scale-95 cursor-pointer text-black dark:text-white rounded mb-2 ">Pagar</a>
             <ul id="productList" class="  "></ul>
             <button id="closePanel" class="absolute top-4 right-2 bg-red-500 text-white py-0.5 px-2 rounded">X</button>
           </div>
