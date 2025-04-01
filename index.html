@@ -1,169 +1,79 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es-pe">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="src/style.css">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="src/style.css">
+  <title>Mundo Tec</title>
 </head>
 
+<body
+  class=" xl:text-xl md:text-[1rem] font-mono bg-[#F0E7D6] dark:bg-gray-800 text-black dark:text-white text-xs  text-center xl:leading-7 md:leading-5 leading-4  flex flex-col ">
+  <header id="header-container"
+    class="grid grid-cols-12  shadow-xl pb-[2rem] md:py-[2rem] bg-white dark:bg-[#091525] dark:text-white">
+  </header>
+  <main id="main" class="">
+    <section id="home min-h-screen ">
+      <div id="carousel"
+        class="relative w-full h-[6rem] md:h-[14rem] lg:h-[19rem] xl:h-[27rem] 2xl:w-[100rem] 2xl:h-auto overflow-hidden  ">
+        <div class="carousel-images flex transition-transform duration-500 mx-auto ">
+          <img src="public/image/slide1.jpg" alt="Imagen 1" class="w-full h-full object-cover">
+          <img src="public/image/slide2.jpg" alt="Imagen 2" class="w-full h-full object-cover">
+          <img src="public/image/slide3.jpg" alt="Imagen 3" class="w-full h-full object-cover">
+        </div>
+        <button
+          class="carousel-btn prev absolute top-1/2 left-0.5 transform -translate-y-1/2 bg-gray-600/40 text-white hover:bg-gray-300/40 hover:scale-105 active:scale-95 cursor-pointer h-[6rem] md:h-[14rem] lg:h-[19rem] xl:h-[27rem] 2xl:w-[100rem] md:px-2"><svg
+            xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 23 10" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M8 3 4 7l4 4" />
+            <path d="M4 7h16" />
 
-<body class=" xl:text-xl md:text-[1rem] bg-[#F0E7D6] text-xs  text-center xl:leading-7 md:leading-5 leading-4  flex flex-col ">
-    <header class="grid grid-cols-12  shadow-xl pb-[2rem] md:py-[2rem] bg-white dark:bg-[#091525] dark:text-white">
-        <img src="../image/logo01.webp"  alt="logo tienda" class="md:col-span-3 md:  h-18  mx-auto col-span-12" >
-        <nav class="md:col-span-9 md: md:w-full col-span-12 grid grid-cols-12 place-items-center">
-            <section class="md:col-start-1 grid grid-cols-8 col-span-8 col-start-2">
-                <form class="relative md:w-[26rem] xl:w-[40rem] w-[13rem] " action="/buscar" method="GET" role="search">
-                    <label for="busqueda" class="sr-only">Buscar:</label>
-                    <input id="busqueda" type="text" name="q" placeholder="Busca lo que necesitas"
-                        class="w-full pl-10 pr-4 py-2 border rounded-full focus:outline-none dark:text-white dark:font-bold">
-                    <span class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500">
-                        <img src="../image/busqueda.svg" alt="Logo de busqueda" class="md:h-8 md:w-8">
-                    </span>
-                </form>
-            </section>
-            <button id="togglePanel" class="col-span-1 col-start-10 hover:scale-110 " href="carrito.html"><img src="../image/carrito.svg" alt="Logo carrito"
-                class="md:h-8 md:w-8 grayscale dark:invert"></button>
-        <a class="col-span-1 col-start-11 hover:scale-110" href="login.html"><img src="../image/user.svg" alt="Logo usuario"
-                class="md:h-8 md:w-8 dark:invert"></a>
+          </svg></button>
+        <button
+          class="carousel-btn next absolute top-1/2 right-0.5 transform -translate-y-1/2 bg-gray-600/40 text-white hover:bg-gray-300/40 hover:scale-105 active:scale-95 cursor-pointer h-[6rem] md:h-[14rem] lg:h-[19rem] xl:h-[27rem] 2xl:w-[100rem] md:px-2 "><svg
+            xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 4 23 23" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m16 21 4-4-4-4" />
+            <path d="M20 17H4" />
+          </svg> </button>
+      </div>
+      <h2 class="my-2">Productos Nuevos</h2>
+      <section id="nuevo"
+        class="overflow-x-scroll flex mx-2 xl:h-[24rem]  gap-2 justify-center items-center no-scrollbar">
+      </section>
+      <h2 class="my-2">En Oferta</h2>
+      <section id="enOferta"
+        class="overflow-x-scroll flex mx-2 xl:h-[24rem] gap-2 justify-center items-center no-scrollbar">
+      </section>
+    </section>
+
+    <section id="sectionProducto" class=" flex flex-wrap">
+    </section>
+
+    <section id="catalogoProductos" class=" border flex flex-wrap ">
+      <div class=" min-h-screen flex-grow  ">
+        <nav
+          class="lg:h-50 md:h-40 max-w-2/3 mx-auto h-30  w-full pb-4 my-6 col-span-17  content-end rounded-lg    bg-gradient-to-r from-gray-900 via-gray-800 to-blue-700 bg-opacity-90 text-white p-8  shadow-xl border-2  transition duration-1800 hover:bg-gradient-to-l hover:from-blue-700 hover:via-gray-800 hover:to-gray-900">
+          <h2 id="textTitulo" class="pb-4 text-4xl font-mono  text-cyan-700">Catalogo</h2>
+          <p class="font-mono ">Inicio > <span id="Ruta">Catalogo</span></p>
         </nav>
-        <section class="flex items-center col-span-12 justify-center gap-8 mt-[1rem]">
-            <a id="mostrarCatalogo" class="font-semibold cursor-pointer hover:scale-105" type="button " href="src/categorias.html" >Catalogo</a>
-            <a id="mostrarAccesorios" class="font-semibold cursor-pointer hover:scale-105" type="button" href="src/categorias.html" >Accesorios</a>
-            <a id="mostrarPc" class="font-semibold cursor-pointer hover:scale-105" type="button" href="src/categorias.html" >Pc</a>
-            <a id="mostrarImpresoras" class="font-semibold cursor-pointer hover:scale-105" type="button" href="src/categorias.html">Impresoras</a>
-            <a id="mostrarLaptop" class="font-semibold cursor-pointer hover:scale-110" type="button" href="src/categorias.html" >Laptop</a>
+
+        <section id="catalogo"
+          class="xl: grid lg:grid-cols-4 xl:grid-cols-5 md:grid-cols-3  gap-3 grid-cols-2 justify-self-center mb-4 ">
         </section>
+      </div>
+    </section>
+  </main>
 
-    </header>
-     <!-- Contenido principal -->
-     <main class="flex flex-col min-h-screen flex-grow border ">
-        <!-- Sección de banner -->
-        <section class="mx-auto">
-            <div class="relative  overflow-hidden rounded-lg shadow ">
-        
-                <!-- Slides -->
-                <div class="flex transition-transform duration-700 ease-in-out w-[19rem] md:w-[40rem] xl:w-[90rem] my-8 h-auto" id="slider">
-                    <div class="w-full flex-shrink-0"><img src="/image/slide1.jpg" class="w-full object-cover"></div>
-                    <div class="w-full flex-shrink-0"><img src="/image/slide2.jpg" class="w-full object-cover"></div>
-                    <div class="w-full flex-shrink-0"><img src="/image/slide3.jpg" class="w-full object-cover"></div>
-                </div>
-        
-                <!-- Botones de navegación -->
-                <button id="prev" class="absolute left-2 top-1/2 transform -translate-y-1/2 bg-gray-600 text-white p-3 rounded-full opacity-50 hover:opacity-90 transition cursor-pointer">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"></path>
-                    </svg>
-                </button>
-                <button id="next" class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-gray-600 text-white p-3 rounded-full opacity-50 hover:opacity-90 transition cursor-pointer">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path>
-                    </svg>
-                </button>
-        
-                <!-- Indicadores -->
-                <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2 ">
-                    <span class="dot w-3 h-3 bg-white rounded-full cursor-pointer"></span>
-                    <span class="dot w-3 h-3 bg-gray-400 rounded-full cursor-pointer"></span>
-                    <span class="dot w-3 h-3 bg-gray-400 rounded-full cursor-pointer"></span>
-                </div>
-        
-                
-        
-            </div>
-        </section>
+  <footer id="footer-container"
+    class="lg:pt-4 lg:justify-items-center lg:grid-cols-6 md:grid-cols-4 grid grid-cols-2 dark:bg-[#091525] dark:text-white  bg-[#e7e7e9] pt-2 w-full">
+  </footer>
 
-        <!-- Sección de productos -->
-        <section class="w-full flex flex-col items-center  ">
+  <section id="modal-carrito" class="hidden">
+  </section>
 
-            <!-- Nuevos Lanzamientos -->
-            <section class="mb-8">
-                <h5 class="font-bold mb-4">Nuevos lanzamientos</h5>
-                <section id="nuevosLanzamientos" class="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 gap-2 justify-self-center">
-
-
-                </section>
-            </section>
-
-            <!-- Ofertas Especiales -->
-            <section class="mb-8">
-                <h5 class="font-bold mb-4">Ofertas Especiales</h5>
-                <section id="ofertasEspeciales" class="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 gap-2 justify-self-center">
-
-
-                </section>
-            </section>
-        </section>
-    </main>
-
-    <footer class="lg:pt-4 lg:justify-items-center lg:grid-cols-6 md:grid-cols-4 grid grid-cols-2 dark:bg-[#091525] dark:text-white  bg-[#e7e7e9] pt-2 w-full">
-        <section class="lg:col-start-2 text-center col-span-1">
-            <h3 class="">Contactanos</h3>
-            <div class="grid grid-cols-4 place-items-center md:gap-4">
-                <img class="" src="../image/facebook.svg" alt="facebook">
-                <img class="" src="../image/instagram.svg" alt="instagram">
-                <img class="" src="../image/twitter.svg" alt="twitter">
-                <img class="" src="../image/youtube.svg" alt="Youtube">
-            </div>
-        </section>
-        <section class="text-center col-span-1">
-            <h3 class="">Metodos de pago</h3>
-            <div class="grid grid-cols-4 place-items-center md:gap-4 ">
-                <img class="" src="../image/visa.svg" alt="Visa">
-                <img class="" src="../image/paypal.svg" alt="Paypal">
-                <img class="" src="../image/Yape.svg" alt="Yape">
-                <img class="" src="../image/plin.svg" alt="Plin">
-            </div>
-        </section>
-        <section class="lg:col-span-2 md:col-span-2 col-span-2 mt-2 flex justify-self-center gap-4 dark:text-black ">
-            <a class="lg:px-1 lg:max-h-2/3 flex bg-white items-center max-h-2/3 h-18 xl:w-[12rem] w-[9rem]  rounded leading-5 hover:scale-105 transition duration-300" href=""><img
-                    src="../image/libroReclamaciones.svg" alt="Libro de reclamaciones">Libro de reclamaciones</a>
-            <a class=" max-h-2/3 flex bg-white items-center h-18 xl:w-[12rem] w-[9rem] rounded px-1 leading-5 hover:scale-105 transition duration-300" href=""><img
-                    src="../image/candado.svg" alt="Terminos y condiciones">Terminos y condiciones</a>
-        </section>
-    </footer>
-    <section class="hidden fixed inset-0 bg-black/50 text-xs md:text-base " id="overlay">
-        <div id="sidePanel" class="fixed top-0 right-[-300px] w-[17rem] h-full md:w-[20rem] bg-cyan-50 dark:bg-gray-700 shadow-lg transform transition-transform duration-300">
-          <div class="p-4">
-            <h3 class="text-lg font-bold dark:text-white mb-4 text-black">Carrito de Compras</h3>
-          <a id="enviarCarrito" type="button" href="carrito.html" codigo="${codigo}" class="bg-green-500 w-[6rem] py-1 hover:scale-105 active:scale-95 cursor-pointer text-black dark:text-white rounded mb-2 ">Pagar</a>
-            <ul id="productList" class="  "></ul>
-            <button id="closePanel" class="absolute top-4 right-2 bg-red-500 text-white py-0.5 px-2 rounded">X</button>
-          </div>
-        </div>
-      </section>
-      <section class="hidden bg-gray-900/50 fixed inset-0  items-center justify-center" id="modal">
-        <div class="w-[20rem] h-[16rem] md:w-[25rem] md:h-[18rem] bg-[#091525] border-2  rounded-sm flex flex-col gap-0.5 p-4 text-black dark:text-white ">
-          <button id="closeModal" class="w-[1.5rem] h-[1.5rem] bg-red-500 text-white md:w-[2rem] md:h-[2rem] py-1 px-2 rounded ml-auto">X</button>
-          <h5 class="text-lg font-semibold md:my-2 my-1 text-black dark:text-white  border rounded ">Precio</h5>  
-          <div class="flex flex-wrap gap-4 ml-4">
-            <label class="flex items-center mb-1">
-              <input type="radio" name="price" value="low" class="mr-2"> + $50
-            </label>
-            <label class="flex items-center mb-1">
-              <input type="radio" name="price" value="medium" class="mr-2"> + $100
-            </label>
-            <label class="flex items-center mb-1">
-              <input type="radio" name="price" value="high" class="mr-2"> + $200
-            </label>
-            <label class="flex items-center mb-1">
-              <input type="radio" name="price" value="extra-high" class="mr-2"> + $400
-            </label>
-          </div>
-      
-          <h5 class="text-lg font-semibold md:my-4 text-black dark:text-white  border rounded ">Estado</h5>
-          <div class="flex flex-wrap gap-4 ml-4">
-            <label class="flex items-center mb-1">
-              <input type="checkbox" name="status" value="new" class="mr-2"> Nuevo
-            </label>
-            <label class="flex items-center mb-1">
-              <input type="checkbox" name="status" value="offer" class="mr-2"> Oferta
-            </label>
-          </div>
-          <button type="button" id="apply-filters" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold p-2 rounded  mt-4 mx-auto leading-4 border hover:scale-105 active:scale-95 cursor-pointer">Aplicar</button>
-        </div>
-      </section>
-    <script type="module" src="src/js/categorias.js"></script>
+  <script type="module" src="src/js/main.js"></script>
 </body>
 
 </html>
