@@ -1,6 +1,10 @@
 import { card } from "./componentes/card";
 import { modalcard } from "./componentes/modal";
 import { pageProducto } from "./componentes/producto";
+import { tablaProductos } from "./componentes/tabla";
+
+
+
 export class Producto {
     static carrito = [];
     static listaProductos = [];
@@ -18,14 +22,33 @@ export class Producto {
     }
 
     bajarCarrito() {
-        const carrito = JSON.parse(localStorage.getItem('carrito'));
-        return carrito;
+        const usuarioActivo = JSON.parse(localStorage.getItem('usuarioActivo'));
+        const pago = JSON.parse(localStorage.getItem(`carrito${usuarioActivo.nombre}`));
+        if (pago) {
+            document.getElementById("cardPago").innerHTML = " ";
+            pago.forEach((producto) => {
+                const tr = document.createElement("tr");
+                const clases = "border-b border-gray-200 hover:bg-gray-50 text-center";
+                tr.classList.add(...clases.split(" "));
+                tr.innerHTML = tablaProductos(producto.nombre, producto.precio, producto.url, producto.codigo);
+
+                document.getElementById("cardPago").appendChild(tr);
+            });
+        } else {
+            console.log("no hay productos en el carrito de pago");
+        }
+
     }
 
     subirCarrito() {
-        console.log(Producto.carrito);
-        localStorage.setItem("carrito", JSON.stringify(Producto.carrito));
+        const usuarioActivo = JSON.parse(localStorage.getItem('usuarioActivo'));
 
+        console.log(Producto.carrito);
+        if (usuarioActivo.activo === true) {
+            localStorage.setItem(`carrito${usuarioActivo.nombre}`, JSON.stringify(Producto.carrito));
+        } else {
+            alert("iniciar sesion para guardar en el carrito");
+        }
     }
     verCard(data) {
         const product = Producto.listaProductos.find(producto => producto.codigo == data);
@@ -34,10 +57,18 @@ export class Producto {
 
 
     guardarCard(event) {
+        const usuarioActivo = JSON.parse(localStorage.getItem('usuarioActivo'));
+        console.log(carritoActivo);
         const data = event.target.getAttribute("data-codigo");
         const filtrado = Producto.listaProductos.find(producto => producto.codigo === data);
         (Producto.carrito.some(p => p.codigo === filtrado.codigo)) ? console.log("ya existe") : Producto.carrito.push(filtrado);
         document.getElementById("productList").innerHTML = " ";
+
+        if (usuarioActivo.activo === true && carritoActivo.nombre !== null) {
+            const pago = JSON.parse(localStorage.getItem(`carrito${usuarioActivo.nombre}`));
+            Producto.carrito = pago;
+        }
+
 
         Producto.carrito.forEach((producto) => {
             const li = document.createElement("li");
@@ -47,7 +78,6 @@ export class Producto {
             document.getElementById("productList").appendChild(li);
         });
     }
-
 
     mostrarProducto() {
         const catalogo = document.getElementById("catalogo");

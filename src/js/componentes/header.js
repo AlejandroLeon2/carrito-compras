@@ -11,9 +11,11 @@ export function headerComponente() {
                     </span>
                 </form>
             </section>
-            <button id="abrirCarrito" class="col-span-1 col-start-10 hover:scale-110 "><img src="../image/carrito.svg" alt="Logo carrito"
+                <button id="abrirCarrito" class="col-span-1 col-start-10 hover:scale-110 "><img src="../image/carrito.svg" alt="Logo carrito"
                 class="md:h-8 md:w-8 grayscale dark:invert"></button>
-        <a class="col-span-1 col-start-11 hover:scale-110" href="login.html"><img src="../image/user.svg" alt="Logo usuario"
+                <a id="login"class="col-span-1 col-start-11 hover:scale-110" ><img src="../image/user.svg" alt="Logo usuario"
+                class="md:h-8 md:w-8 dark:invert"></a>
+                <a id="logout" class="hidden col-span-1 col-start-11 hover:scale-110" ><img src="../image/logout.svg" alt="Logo cerrar sesion"
                 class="md:h-8 md:w-8 dark:invert"></a>
         </nav>
         <section class="flex items-center col-span-12 justify-center md:gap-8 gap-4 mt-[1rem]">
