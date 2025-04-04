@@ -2,7 +2,7 @@ export function headerComponente() {
     return `<img src="../image/logo01.webp"  alt="logo tienda" class="md:col-span-3 md:  h-18  mx-auto col-span-12" >
         <nav class="md:col-span-9 md: md:w-full col-span-12 grid grid-cols-12 place-items-center">
             <section class="md:col-start-1 grid grid-cols-8 col-span-8 col-start-2">
-                <form class="relative md:w-[26rem] xl:w-[40rem] w-[13rem] " action="/buscar" method="GET" role="search">
+                <form class="relative md:w-[26rem] xl:w-[40rem] w-[13rem] "  method="GET" role="search">
                     <label for="busqueda" class="sr-only">Buscar:</label>
                     <input id="busqueda" type="text" name="q" placeholder="Busca lo que necesitas"
                         class="w-full pl-10 pr-4 py-2 border rounded-full focus:outline-none dark:text-white dark:font-bold">

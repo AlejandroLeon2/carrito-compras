@@ -20,7 +20,22 @@ localStorage.setItem(`usuarioActivo`, JSON.stringify(usuarioInactivo));
 
 
 document.addEventListener(`DOMContentLoaded`, () => {
+    //==========================================================================
+    //barra de busqueda
+    document.getElementById("busqueda").addEventListener("input", function (event) {
+        const palabra = event.target.value.toLowerCase();
+        const productos = document.querySelectorAll("#cardProducto");
 
+        productos.forEach(producto => {
+            const nombreProducto = producto.getAttribute("data-nombre").toLowerCase();
+            if (nombreProducto.includes(palabra)) {
+                producto.classList.remove("hidden");
+
+            } else {
+                producto.classList.add("hidden");
+            }
+        });
+    });
 
 
     //===================================================================
@@ -114,7 +129,12 @@ document.addEventListener(`DOMContentLoaded`, () => {
         const contraseñaNew = document.getElementById("contraseñaNew").value.trim();
 
         const nuevoUsuario = { nom_usuario: `${usuarioNew}`, correo: `${correoNew}`, contraseña: `${contraseñaNew}` }
-        Usuario.prototype.validarRegistro(nuevoUsuario);
+        const validarRegistro = Usuario.prototype.validarRegistro(nuevoUsuario);
+        if (validarRegistro) {
+            document.getElementById("loginPage").classList.remove("hidden");
+            document.getElementById("registerPage").classList.add("hidden");
+        }
+
     });
     //===============================================================
     // login page
@@ -123,7 +143,7 @@ document.addEventListener(`DOMContentLoaded`, () => {
         event.preventDefault();
         const usuario = document.getElementById("usuario").value.trim();
         const contraseña = document.getElementById("contraseña").value.trim();
- 
+
 
         const usuariovalidar = JSON.parse(localStorage.getItem(usuario));
         console.log(usuariovalidar);
@@ -147,7 +167,7 @@ document.addEventListener(`DOMContentLoaded`, () => {
             } else {
                 console.log("El carrito está vacío o no es válido.");
             }
-            
+
             document.getElementById("logout").classList.remove("hidden");
             document.getElementById("login").classList.add("hidden");
         }
