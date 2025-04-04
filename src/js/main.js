@@ -20,6 +20,9 @@ localStorage.setItem(`usuarioActivo`, JSON.stringify(usuarioInactivo));
 
 
 document.addEventListener(`DOMContentLoaded`, () => {
+
+
+
     //===================================================================
     //vista  login y register 
     document.getElementById("loginPage").addEventListener("click", (event) => {
@@ -53,6 +56,7 @@ document.addEventListener(`DOMContentLoaded`, () => {
         const usuarioActivo = JSON.parse(localStorage.getItem('usuarioActivo'));
         let pago = JSON.parse(localStorage.getItem(`carrito${usuarioActivo.nombre}`));
 
+
         if (event.target.classList.contains("eliminar-btn")) {
             const elem = event.target.dataset.codigoPago;
             pago = pago.filter(filtro => filtro.codigo !== elem);
@@ -70,13 +74,17 @@ document.addEventListener(`DOMContentLoaded`, () => {
             alert(`Gracias por su compra ${usuarioActivo.nombre}`);
         }
         if (event.target.matches("#vaciarCarrito")) {
-            localStorage.setItem(`carrito${usuarioActivo.nombre}`, JSON.stringify(null));
+            localStorage.setItem(`carrito${usuarioActivo.nombre}`, JSON.stringify([]));
+            Producto.prototype.bajarCarrito();
+            let pagoNew = JSON.parse(localStorage.getItem(`carrito${usuarioActivo.nombre}`));
+            const carritolocal = Producto.carrito = [...pagoNew];
+            Producto.prototype.guardarCard(null, carritolocal);
         }
         if (event.target.matches("#seguirComprando")) {
             document.getElementById("header-container").classList.remove("hidden");
             document.getElementById("catalogoProducto").classList.add("hidden");
             document.getElementById("home").classList.remove("hidden");
-            document.getElementById("pagePago").classList.add("hidden");
+            document.getElementById("pagoPage").classList.add("hidden");
 
         }
 
@@ -111,15 +119,37 @@ document.addEventListener(`DOMContentLoaded`, () => {
     //===============================================================
     // login page
     document.querySelector("#formLogin").addEventListener("submit", (event) => {
-        const usuarioActivo = JSON.parse(localStorage.getItem('usuarioActivo'));
+
         event.preventDefault();
         const usuario = document.getElementById("usuario").value.trim();
         const contraseña = document.getElementById("contraseña").value.trim();
-        Usuario.prototype.validarUsuario(usuario, contraseña);
-        if (usuarioActivo.activo === true) {
+ 
+
+        const usuariovalidar = JSON.parse(localStorage.getItem(usuario));
+        console.log(usuariovalidar);
+        if (usuariovalidar) {
+            const nuevoUsuario = { nom_usuario: `${usuariovalidar.nom_usuario}`, correo: `${usuariovalidar.correo}`, contraseña: `${usuariovalidar.contraseña}` }
+            console.log(nuevoUsuario);
+            Usuario.prototype.validarRegistro(nuevoUsuario);
+        }
+        const validar = Usuario.prototype.validarUsuario(usuario, contraseña);
+
+        const usuarioActivo = JSON.parse(localStorage.getItem('usuarioActivo'));
+        const pago = JSON.parse(localStorage.getItem(`carrito${usuarioActivo.nombre}`));
+
+        if (validar === true) {
             document.getElementById("loginPage").classList.add("hidden");
             document.getElementById("home").classList.remove("hidden");
             document.getElementById("header-container").classList.remove("hidden");
+            if (usuarioActivo.activo === true && Array.isArray(pago) && pago.length > 0) {
+                const carritolocal = Producto.carrito = [...pago];
+                Producto.prototype.guardarCard(null, carritolocal);
+            } else {
+                console.log("El carrito está vacío o no es válido.");
+            }
+            
+            document.getElementById("logout").classList.remove("hidden");
+            document.getElementById("login").classList.add("hidden");
         }
     });
     //===========================================================
@@ -144,11 +174,6 @@ document.addEventListener(`DOMContentLoaded`, () => {
     );
     document.getElementById("login").addEventListener("click", () => {
         const usuarioActivo = JSON.parse(localStorage.getItem('usuarioActivo'));
-        if (usuarioActivo.activo === true) {
-            document.getElementById("logout").classList.remove("hidden");
-            document.getElementById("login").classList.add("hidden");
-
-        }
         document.getElementById("loginPage").classList.remove("hidden");
         document.getElementById("catalogoProducto").classList.add("hidden");
         document.getElementById("sectionProducto").classList.add("hidden");
@@ -219,9 +244,8 @@ document.addEventListener(`DOMContentLoaded`, () => {
             document.getElementById("pagoPage").classList.remove("hidden");
             document.getElementById("catalogoProducto").classList.add("hidden");
             document.getElementById("home").classList.add("hidden");
-        } else {
-            console.log("no se subio");
         }
+
         if (event.target.classList.contains("remove-btn")) {
             const elem = event.target.dataset.codigo;
             Producto.carrito = Producto.carrito.filter(filtro => filtro.codigo !== elem);

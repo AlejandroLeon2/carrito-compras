@@ -56,19 +56,20 @@ export class Producto {
     };
 
 
-    guardarCard(event) {
-        const usuarioActivo = JSON.parse(localStorage.getItem('usuarioActivo'));
-        console.log(carritoActivo);
-        const data = event.target.getAttribute("data-codigo");
-        const filtrado = Producto.listaProductos.find(producto => producto.codigo === data);
-        (Producto.carrito.some(p => p.codigo === filtrado.codigo)) ? console.log("ya existe") : Producto.carrito.push(filtrado);
-        document.getElementById("productList").innerHTML = " ";
+    guardarCard(event, pago) {
 
-        if (usuarioActivo.activo === true && carritoActivo.nombre !== null) {
-            const pago = JSON.parse(localStorage.getItem(`carrito${usuarioActivo.nombre}`));
-            Producto.carrito = pago;
+        if (event) {
+            const data = event.target.getAttribute("data-codigo");
+            const filtrado = Producto.listaProductos.find(producto => producto.codigo === data);
+            (Producto.carrito.some(p => p.codigo === filtrado.codigo)) ? console.log("ya existe") : Producto.carrito.push(filtrado);
+            document.getElementById("productList").innerHTML = " ";
         }
-
+        if (pago) {
+            console.log(pago);
+            document.getElementById("productList").innerHTML = " ";
+            Producto.carrito = pago;
+            
+        }
 
         Producto.carrito.forEach((producto) => {
             const li = document.createElement("li");

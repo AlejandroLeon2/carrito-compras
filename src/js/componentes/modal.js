@@ -17,7 +17,7 @@ export function modalcard(url, nombre, precio, codigo) {
     <img src="${url}" alt="${nombre}" class="w-[6rem]  h-full rounded-l shadow-xl">
     <div class="flex-1">
       <p class="font-semibold overflow-hidden mx-1">${nombre}</p>
-      <p class="text-sm text-black dark:text-white">S/ ${precio}</p>
+      <p class="text-sm text-black dark:text-white">S/ ${precio.toFixed(2)}</p>
     </div>
     <button data-codigo="${codigo}" class="remove-btn  bg-red-500 text-white px-1 py-0.5 rounded  mr-1 mt-1 hover:scale-105 active:scale-95 cursor-pointer">X</button>
     `;

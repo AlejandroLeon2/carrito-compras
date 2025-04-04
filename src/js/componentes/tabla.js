@@ -6,7 +6,7 @@ export function tablaProductos(nombre, precios, url, codigo) {
               <span class="overflow-hidden w-25 h-[4rem]" >${nombre}</span>
             </div>
           </td>
-          <td class="py-1 px-2 text-center">S/ ${precios}</td>
+          <td class="py-1 px-2 text-center">S/ ${precios.toFixed(2)}</td>
                     <td class="py-1 px-2 text-center">
             <input type="number" value="1" min="1" class="cantidad-input border rounded w-6 text-center"
             data-codigot = "${codigo}" data-precio="${precios}" />
