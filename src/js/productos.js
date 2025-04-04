@@ -1,43 +1,116 @@
+import { card } from "./componentes/card";
+import { modalcard } from "./componentes/modal";
+import { pageProducto } from "./componentes/producto";
+import { tablaProductos } from "./componentes/tabla";
+
+
+
 export class Producto {
+    static carrito = [];
     static listaProductos = [];
-    constructor(nombre, descripcion,precio,nuevo, codigo,url,categoria,enOferta){
+    constructor(nombre, descripcion, precio, nuevo, codigo, url, categoria, enOferta) {
         this.nombre = nombre;
-        this.descripcion = descripcion ;
+        this.descripcion = descripcion;
         this.precio = precio;
-        this.nuevo = nuevo ;
-        this.codigo = codigo ;
-        this.url = url ;
+        this.nuevo = nuevo;
+        this.codigo = codigo;
+        this.url = url;
         this.categoria = categoria;
         this.enOferta = enOferta;
 
         Producto.listaProductos.push(this);
     }
-    mostrarProducto(){
-        const catalogo = document.getElementById("catalogo");
-        let html = ""; 
-        Producto.listaProductos.forEach(({ nombre, precio, url }) => {
-            html += `
-                <div class="flex flex-col xl:w-[15rem] xl:h-[22rem] lg:w-[12rem] lg:h-[16rem] md:w-[12rem] md:h-[16rem] h-[12rem] w-[9rem] col-span-1 bg-gray-100 dark:bg-[#091525] rounded hover:scale-105 transition duration-300 border-black dark:border-white border dark:text-white text-black" id="cardProducto">
-                    <img class="h-1/2 overflow-hidden rounded-t cursor-pointer w-full" src="${url}" alt="foto de producto">
-                    <p class="xl:mt-2 lg:mx-2.5 md:my-1.9 md:mx-1 text-wrap my-1 mx-0.5" id="nombreProducto">${nombre}</p>
-                    <p class="lg:mx-2.5 md:my-1.9 md:mx-1 text-wrap my-1 mx-0.5 font-bold">Precio: S/<span id="Precio">${precio}</span></p>
-                    <button id="añadir-carrito" data-nombre="${nombre}" data-precio="${precio}" data-url="${url}" type="button" class="dark:bg-gray-700 dark:hover:bg-gray-800 bg-[#1d2027e8] hover:bg-[#091525] py-0.5 rounded-[0.8rem] md:p-0.5 mb-2 mt-auto  lg:mx-[3rem] xl:mx-[3.8rem] md:mx-[3rem] mx-9 md:leading-4 leading-3 border hover:scale-105 active:scale-95 cursor-pointer text-white dark:text-dark ">
-                        Añadir carrito
-                    </button>
-                </div>
-            `;
+
+    bajarCarrito() {
+        const usuarioActivo = JSON.parse(localStorage.getItem('usuarioActivo'));
+        const pago = JSON.parse(localStorage.getItem(`carrito${usuarioActivo.nombre}`));
+        if (pago) {
+            document.getElementById("cardPago").innerHTML = " ";
+            pago.forEach((producto) => {
+                const tr = document.createElement("tr");
+                const clases = "border-b border-gray-200 hover:bg-gray-50 text-center";
+                tr.classList.add(...clases.split(" "));
+                tr.innerHTML = tablaProductos(producto.nombre, producto.precio, producto.url, producto.codigo);
+
+                document.getElementById("cardPago").appendChild(tr);
+            });
+        } else {
+            console.log("no hay productos en el carrito de pago");
+        }
+
+    }
+
+    subirCarrito() {
+        const usuarioActivo = JSON.parse(localStorage.getItem('usuarioActivo'));
+
+        console.log(Producto.carrito);
+        if (usuarioActivo.activo === true) {
+            localStorage.setItem(`carrito${usuarioActivo.nombre}`, JSON.stringify(Producto.carrito));
+        } else {
+            alert("iniciar sesion para guardar en el carrito");
+        }
+    }
+    verCard(data) {
+        const product = Producto.listaProductos.find(producto => producto.codigo == data);
+        document.getElementById("sectionProducto").innerHTML = pageProducto(product.nombre, product.descripcion, product.precio, product.codigo, product.url);
+    };
+
+
+    guardarCard(event, pago) {
+
+        if (event) {
+            const data = event.target.getAttribute("data-codigo");
+            const filtrado = Producto.listaProductos.find(producto => producto.codigo === data);
+            (Producto.carrito.some(p => p.codigo === filtrado.codigo)) ? console.log("ya existe") : Producto.carrito.push(filtrado);
+            document.getElementById("productList").innerHTML = " ";
+        }
+        if (pago) {
+            console.log(pago);
+            document.getElementById("productList").innerHTML = " ";
+            Producto.carrito = pago;
+            
+        }
+
+        Producto.carrito.forEach((producto) => {
+            const li = document.createElement("li");
+            const clases = "flex items-start rounded justify-center mb-4 dark:text-white text-black dark:bg-[#272829] bg-[#f0e7d6] border-black dark:border-white border h-[5rem] overflow-hidden hover:scale-105";
+            li.classList.add(...clases.split(" "));
+            li.innerHTML = modalcard(producto.url, producto.nombre, producto.precio, producto.codigo);
+            document.getElementById("productList").appendChild(li);
         });
-        catalogo.innerHTML = html; 
-
     }
-    filtrarNuevo(){
 
+    mostrarProducto() {
+        const catalogo = document.getElementById("catalogo");
+        if (Producto.listaProductos.length) {
+            const html = Producto.listaProductos.map(({ nombre, precio, url, codigo }) => card(nombre, precio, url, codigo)).join('');
+            catalogo.innerHTML = html;
+        } else {
+            catalogo.innerHTML = `<p class="text-center text-gray-500 dark:text-gray-300">No hay productos.</p>`;
+        }
     }
-    filtrarOferta(){
 
+    filtrarProducto(categoria) {
+        const catalogo = document.getElementById("catalogo");
+        const productosFiltrados = Producto.listaProductos.filter(producto => producto.categoria === categoria);
+
+        if (productosFiltrados.length) {
+            const html = productosFiltrados.map(({ nombre, precio, url, codigo }) => card(nombre, precio, url, codigo)).join('');
+            catalogo.innerHTML = html;
+        } else {
+            catalogo.innerHTML = `<p class="text-center text-gray-500 dark:text-gray-300">No hay productos en esta categoría.</p>`;
+        }
     }
-    filtrarPrecio(){
 
+    filtrarCantidad(seccion) {
+        const seccionBox = document.getElementById(seccion);
+        const productosFiltrados = Producto.listaProductos.filter(producto => producto[seccion] === true).slice(0, 6);
+        if (productosFiltrados.length) {
+            const html = productosFiltrados.map(({ nombre, precio, url, codigo }) => card(nombre, precio, url, codigo)).join('');
+            seccionBox.innerHTML = html;
+        } else {
+            seccionBox.innerHTML = `<p class="text-center text-gray-500 dark:text-gray-300">No hay productos en esta categoría.</p>`;
+        }
     }
 }
 
@@ -47,7 +120,7 @@ const producto1 = new Producto(
     99,
     true,
     "001",
-    "../image/producto-001.png",
+    "../image/producto-002.png",
     "Accesorios",
     true
 );
@@ -58,7 +131,7 @@ const producto2 = new Producto(
     149,
     false,
     "002",
-    "../image/producto-002.png",
+    "../image/producto-004.png",
     "Pc",
     true
 );
@@ -75,12 +148,12 @@ const producto3 = new Producto(
 );
 
 const producto4 = new Producto(
-    "Producto Ejemplo 4",
+    "MacBook Air Apple 13.6 Chip M3, 256GB SSD, 16GB RAM, 8GPU",
     "Un producto práctico y accesible.",
     129,
     true,
     "004",
-    "../image/producto-004.png",
+    "../image/producto-005.png",
     "Laptop",
     true
 );
@@ -91,7 +164,7 @@ const producto5 = new Producto(
     89,
     false,
     "005",
-    "../image/producto-005.png",
+    "../image/producto-001.png",
     "Accesorios",
     true
 );
@@ -102,7 +175,7 @@ const producto6 = new Producto(
     159,
     true,
     "006",
-    "../image/producto-001.png",
+    "../image/producto-004.png",
     "Pc",
     false
 );
@@ -113,7 +186,7 @@ const producto7 = new Producto(
     189,
     false,
     "007",
-    "../image/producto-002.png",
+    "../image/producto-003.png",
     "Impresoras",
     true
 );
@@ -124,7 +197,7 @@ const producto8 = new Producto(
     74,
     true,
     "008",
-    "../image/producto-003.png",
+    "../image/producto-005.png",
     "Laptop",
     false
 );
@@ -135,7 +208,7 @@ const producto9 = new Producto(
     204,
     false,
     "009",
-    "../image/producto-004.png",
+    "../image/producto-001.png",
     "Accesorios",
     true
 );
@@ -146,7 +219,7 @@ const producto10 = new Producto(
     299,
     true,
     "010",
-    "../image/producto-005.png",
+    "../image/producto-004.png",
     "Pc",
     false
 );
@@ -157,7 +230,7 @@ const producto11 = new Producto(
     493,
     true,
     "011",
-    "../image/producto-001.png",
+    "../image/producto-002.png",
     "Accesorios",
     true
 );
@@ -168,7 +241,7 @@ const producto12 = new Producto(
     179,
     false,
     "012",
-    "../image/producto-002.png",
+    "../image/producto-004.png",
     "Pc",
     false
 );
@@ -190,7 +263,7 @@ const producto14 = new Producto(
     899,
     false,
     "014",
-    "../image/producto-004.png",
+    "../image/producto-005.png",
     "Laptop",
     false
 );
@@ -201,7 +274,9 @@ const producto15 = new Producto(
     293,
     true,
     "015",
-    "../image/producto-005.png",
+    "../image/producto-002.png",
     "Accesorios",
     true
 );
+
+
